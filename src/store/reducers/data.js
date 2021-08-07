@@ -10,6 +10,8 @@ import * as actions from '../actions/actionTypes';
 const initialState = {
     isLoading: true,
     fiscalYear: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
+    departmentList: {},
+    totalAmount: 0,
 };
 
 /**
@@ -28,6 +30,13 @@ const dataReducer = (state = initialState, action) => {
         return {
             ...state,
             fiscalYear: action.fiscalYear,
+        };
+    case actions.LOADDATA:
+        return {
+            ...state,
+            totalAmount: action.data.totalAmount,
+            departmentList: action.data.departmentList,
+            isLoading: action.data.isLoading,
         };
 
     default:
