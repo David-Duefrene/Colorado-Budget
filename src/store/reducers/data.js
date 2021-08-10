@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { DateTime } from 'luxon';
 
 import * as actions from '../actions/actionTypes';
@@ -24,18 +25,35 @@ const dataReducer = (state = initialState, action) => {
     case actions.ISLOADING:
         return {
             ...state,
-            isLoading: !state.isLoading,
+            isLoading: action.isLoading,
         };
+
     case actions.DATE:
         return {
             ...state,
             fiscalYear: action.fiscalYear,
         };
+
     case actions.LOADDATA:
+        const actionList = action.data.departmentList;
+        const stateList = state.departmentList;
+        let newAmount = 0;
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [element, value] of Object.entries(actionList)) {
+            newAmount += parseFloat(value);
+            if (element in stateList) {
+                stateList[element] += value;
+            } else {
+                stateList[element] = value;
+            }
+            // isInDict(newDeptList, element, parseFloat(value));
+        }
+
         return {
             ...state,
-            totalAmount: action.data.totalAmount,
-            departmentList: action.data.departmentList,
+            totalAmount: action.data.totalAmount + newAmount,
+            departmentList: stateList,
             isLoading: action.data.isLoading,
         };
 
