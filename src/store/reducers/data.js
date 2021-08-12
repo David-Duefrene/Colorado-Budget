@@ -35,25 +35,27 @@ const dataReducer = (state = initialState, action) => {
         };
 
     case actions.LOADDATA:
-        const actionList = action.data.departmentList;
-        const stateList = state.departmentList;
-        let newAmount = 0;
+        const { data } = action;
+        const { departmentList } = state;
+        let newTotalAmount = 0;
 
-        // eslint-disable-next-line no-restricted-syntax
-        for (const [element, value] of Object.entries(actionList)) {
-            newAmount += parseFloat(value);
-            if (element in stateList) {
-                stateList[element] += value;
+        Object.keys(data).forEach((element) => {
+            const newAmount = parseFloat(data[element].amount);
+            const departmentName = data[element].department;
+
+            newTotalAmount += newAmount;
+            if (departmentName in departmentList) {
+                const oldAmount = parseFloat(departmentList[departmentName]);
+                departmentList[departmentName] = oldAmount + newAmount;
             } else {
-                stateList[element] = value;
+                departmentList[departmentName] = newAmount;
             }
-            // isInDict(newDeptList, element, parseFloat(value));
-        }
+        });
 
         return {
             ...state,
-            totalAmount: action.data.totalAmount + newAmount,
-            departmentList: stateList,
+            totalAmount: state.totalAmount + newTotalAmount,
+            departmentList,
             isLoading: action.data.isLoading,
         };
 

@@ -6,26 +6,24 @@ import LoadData from './store/actions/data';
 import './App.css';
 
 function App() {
-    const fiscalYear = useSelector((state) => state.data.fiscalYear);
     const totalAmount = useSelector((state) => state.data.totalAmount);
     const departmentList = useSelector((state) => state.data.departmentList);
     const isLoading = useSelector((state) => state.data.isLoading);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(LoadData(fiscalYear));
-    }, []);
+    useEffect(() => { dispatch(LoadData()); }, []);
 
     if (isLoading) { return <h1>Loading!!!</h1>; }
     const list = [];
+
     Object.keys(departmentList).forEach((item) => {
-        list.push(<li> {item}: {departmentList[item]} </li>);
+        list.push(<li> {item}: {departmentList[item].toFixed(2)} </li>);
     });
 
     return (
         <div className='App'>
             <ul>
-                <li>Total Amount: {totalAmount}</li>
+                <li>Total Amount: {totalAmount.toFixed(2)}</li>
                 {list}
             </ul>
         </div>
