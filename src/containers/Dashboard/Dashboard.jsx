@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
-import LoadData from '../../store/actions/data';
+import testData from './testData.json';
+
+import LineChart from '../../components/LineChart/LineChart';
 
 /**
  * Renders the main dashboard
@@ -15,45 +16,43 @@ const Dashboard = () => {
      * @constant
      * @type {float}
      */
-    const totalAmount = useSelector((state) => state.data.totalAmount);
+    // const totalAmount = useSelector((state) => state.data.totalAmount);
     /**
      * The list of various Colorado state departments and the amount of money each has spent
      * @constant
      * @type {{Object {name: string, amount: float}}}
      */
-    const departmentList = useSelector((state) => state.data.departmentList);
+    // const departmentList = useSelector((state) => state.data.departmentList);
+    // const weekList = useSelector((state) => state.data.weekList);
     /**
      * If the app is loading or not
      * @constant
      * @type {bool}
      */
-    const isLoading = useSelector((state) => state.data.isLoading);
+    // const isLoading = useSelector((state) => state.data.isLoading);
     /**
      * The dispatch
      * @constant
      * @type {function}
      */
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => { dispatch(LoadData()); }, []);
+    // useEffect(() => { dispatch(LoadData()); }, []);
 
-    if (isLoading) { return <h1>Loading!!!</h1>; }
-    /**
-     * The list of items to display
-     * @constant
-     * @type {list}
-     */
-    const list = [];
+    // if (isLoading) { return <h1>Loading!!!</h1>; }
 
-    Object.keys(departmentList).forEach((item) => {
-        list.push(<li>{`${item}: ${departmentList[item].toFixed(2)}`}</li>);
-    });
+    const dimensions = {
+        width: 600,
+        height: 300,
+        margin: {
+            top: 30, right: 30, bottom: 30, left: 60,
+        },
+    };
+
+    const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
     return (
-        <ul>
-            <li>{`Total Amount: ${totalAmount.toFixed(2)}`}</li>
-            {list}
-        </ul>
+        <LineChart data={{ name: 'test', color, items: testData }} dimensions={dimensions} />
     );
 };
 
