@@ -1,8 +1,8 @@
-import React from 'react';
-
-import testData from './testData.json';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import LineChart from '../../components/LineChart/LineChart';
+import LoadData from '../../store/actions/data';
 
 /**
  * Renders the main dashboard
@@ -22,24 +22,23 @@ const Dashboard = () => {
      * @constant
      * @type {{Object {name: string, amount: float}}}
      */
-    // const departmentList = useSelector((state) => state.data.departmentList);
-    // const weekList = useSelector((state) => state.data.weekList);
+    const departmentList = useSelector((state) => state.data.departmentList);
     /**
      * If the app is loading or not
      * @constant
      * @type {bool}
      */
-    // const isLoading = useSelector((state) => state.data.isLoading);
+    const isLoading = useSelector((state) => state.data.isLoading);
     /**
      * The dispatch
      * @constant
      * @type {function}
      */
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => { dispatch(LoadData()); }, []);
+    useEffect(() => { dispatch(LoadData()); }, []);
 
-    // if (isLoading) { return <h1>Loading!!!</h1>; }
+    if (isLoading) { return <h1>Loading!!!</h1>; }
 
     const dimensions = {
         width: 600,
@@ -51,8 +50,17 @@ const Dashboard = () => {
 
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
+    const display = [];
+
+    for (let index = 0; index < 12; index++) {
+        display.push({
+            value: departmentList[index + 1]['Adams State University (GYAA)'],
+            date: `2020-${index + 1}-01`,
+        });
+    }
+
     return (
-        <LineChart data={{ name: 'test', color, items: testData }} dimensions={dimensions} />
+        <LineChart data={{ name: 'test', color, items: display }} dimensions={dimensions} />
     );
 };
 
