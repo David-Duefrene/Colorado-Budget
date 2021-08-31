@@ -15,8 +15,10 @@ def get_data(year):
 def add_to_result(key, object, value):
     if key in object:
         object[key] += value
+        object['total'] += value
         return
     object[key] = value
+    object['total'] += value
 
 
 data = get_data('2020')
@@ -30,10 +32,10 @@ fund_list = {}
 
 # Set up individual months
 for num in range(12):
-    cabinet_list[str(num + 1)] = {}
-    department_list[str(num + 1)] = {}
-    fund_category_list[str(num + 1)] = {}
-    fund_list[str(num + 1)] = {}
+    cabinet_list[str(num + 1)] = {'total': 0}
+    department_list[str(num + 1)] = {'total': 0}
+    fund_category_list[str(num + 1)] = {'total': 0}
+    fund_list[str(num + 1)] = {'total': 0}
 
 # For 2020 this too 4 hours to run
 for item in data:
@@ -46,7 +48,7 @@ for item in data:
     add_to_result(item['fund_category'], fund_category_list[month], amount)
     add_to_result(item['fund'], fund_list[month], amount)
 
-out = open("test.json", "w")
+out = open("2020.json", "w")
 
 result = {
     'total_amount': total_amount,
