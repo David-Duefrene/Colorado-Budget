@@ -41,10 +41,10 @@ const Dashboard = () => {
     if (isLoading) { return <h1>Loading!!!</h1>; }
 
     const dimensions = {
-        width: 600,
-        height: 300,
+        width: 800,
+        height: 400,
         margin: {
-            top: 30, right: 30, bottom: 30, left: 60,
+            top: 60, right: 200, bottom: 10, left: 100,
         },
     };
 
@@ -53,9 +53,11 @@ const Dashboard = () => {
     const display = [];
 
     for (let index = 0; index < 12; index++) {
+        // Pads 0 if less than 10, ex. 01, 02, 03
+        const day = index < 9 ? `0${index + 1}` : index + 1;
         display.push({
-            value: departmentList[index + 1]['Adams State University (GYAA)'],
-            date: `2020-${index + 1}-01`,
+            value: departmentList[index + 1].total,
+            date: `2020-${day}-01`,
         });
     }
 
