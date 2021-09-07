@@ -24,7 +24,14 @@ def add_to_result(key, object, value):
 data = get_data('2020')
 
 # Results
-total_amount = 0
+# total_amount = 0
+grand_totals = {
+    'total_amount': 0,
+    'cabinet': {'total': 0},
+    'department': {'total': 0},
+    'fund_category': {'total': 0},
+    'fund': {'total': 0},
+}
 cabinet_list = {}
 department_list = {}
 fund_category_list = {}
@@ -41,7 +48,13 @@ for num in range(12):
 for item in data:
     date = datetime.datetime.strptime(item['journal_date'], '%Y-%m-%dT%H:%M:%S.000')
     amount = int(float(item['amount']) * 100)
-    total_amount += amount
+
+    grand_totals['total_amount'] += amount
+    add_to_result(item['cabinet'], grand_totals['cabinet'], amount)
+    add_to_result(item['department'], grand_totals['department'], amount)
+    add_to_result(item['fund_category'], grand_totals['fund_category'], amount)
+    add_to_result(item['fund'], grand_totals['fund'], amount)
+
     month = str(date.month)
     add_to_result(item['cabinet'], cabinet_list[month], amount)
     add_to_result(item['department'], department_list[month], amount)
@@ -51,7 +64,7 @@ for item in data:
 out = open("2020.json", "w")
 
 result = {
-    'total_amount': total_amount,
+    'grand_totals': grand_totals,
     'cabinet_list': cabinet_list,
     'department_list': department_list,
     'fund_category_list': fund_category_list,
