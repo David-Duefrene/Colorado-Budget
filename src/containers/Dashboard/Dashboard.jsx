@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import LineChart from '../../components/LineChart/LineChart';
-import PieChart from '../../components/PieChart/PieChart';
 import LoadData from '../../store/actions/data';
 
 /**
@@ -64,7 +63,6 @@ const Dashboard = () => {
 
     return (
         <div>
-            <PieChart dimensions={dimensions} />
             <LineChart data={{ name: 'test', color, items: display }} dimensions={dimensions} />
         </div>
     );
