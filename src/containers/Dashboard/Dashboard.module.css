@@ -1,0 +1,9 @@
+.Main {
+    color: white;
+}
+
+.List {
+    height:25em;
+    overflow-y: auto;
+    display: inline-block;
+}

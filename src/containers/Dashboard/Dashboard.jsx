@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import LineChart from '../../components/LineChart/LineChart';
 import LoadData from '../../store/actions/data';
+import CSS from './Dashboard.module.css';
 
 /**
  * Renders the main dashboard
@@ -12,11 +13,11 @@ import LoadData from '../../store/actions/data';
  */
 const Dashboard = () => {
     /**
-     * The total amount the Colorado state has spent
+     * The total amount each department in the Colorado Gov has spent
      * @constant
      * @type {float}
      */
-    // const totalAmount = useSelector((state) => state.data.totalAmount);
+    const departmentTotals = useSelector((state) => state.data.departmentTotals);
     /**
      * The list of various Colorado state departments and the amount of money each has spent
      * @constant
@@ -47,11 +48,9 @@ const Dashboard = () => {
             top: 60, right: 200, bottom: 10, left: 100,
         },
     };
-
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
     const display = [];
-
     for (let index = 0; index < 12; index++) {
         // Pads 0 if less than 10, ex. 01, 02, 03
         const day = index < 9 ? `0${index + 1}` : index + 1;
@@ -61,8 +60,14 @@ const Dashboard = () => {
         });
     }
 
+    const dropdown = [];
+    Object.keys(departmentTotals).forEach((key) => {
+        dropdown.push(<li>{key}</li>);
+    });
+
     return (
-        <div>
+        <div className={CSS.Main}>
+            <ul className={CSS.List}>{dropdown}</ul>
             <LineChart data={{ name: 'test', color, items: display }} dimensions={dimensions} />
         </div>
     );
