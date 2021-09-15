@@ -42,7 +42,7 @@ const Dashboard = () => {
     if (isLoading) { return <h1>Loading!!!</h1>; }
 
     const dimensions = {
-        width: 400,
+        width: 800,
         height: 400,
         margin: {
             top: 60, right: 200, bottom: 10, left: 100,

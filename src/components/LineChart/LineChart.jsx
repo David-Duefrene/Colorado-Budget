@@ -31,7 +31,8 @@ const LineChart = ({ data, dimensions }) => {
 
         // Add X grid lines with labels
         const xAxis = d3.axisBottom(xScale)
-            .tickSize(-height + margin.bottom);
+            .tickSize(-height + margin.bottom)
+            .tickFormat(d3.timeFormat('%B'));
         const xAxisGroup = svg.append('g')
             .attr('transform', `translate(0, ${height - margin.bottom})`)
             .call(xAxis);
