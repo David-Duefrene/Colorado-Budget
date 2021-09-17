@@ -13,4 +13,11 @@ const LoadData = () => (dispatch) => {
     });
 };
 
+export const SetSubItem = (subItem) => (dispatch) => {
+    dispatch({
+        type: actions.SETSUBITEM,
+        data: { subItem },
+    });
+};
+
 export default LoadData;

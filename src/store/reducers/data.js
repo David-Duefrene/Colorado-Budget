@@ -14,6 +14,7 @@ const initialState = {
     fiscalYear: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
     departmentList: {},
     departmentTotals: {},
+    subItem: '',
     totalAmount: 0.0,
 };
 
@@ -45,6 +46,12 @@ const dataReducer = (state = initialState, action) => {
             departmentList: department_list,
             departmentTotals: grand_totals.department,
             isLoading: action.data.isLoading,
+        };
+
+    case actions.SETSUBITEM:
+        return {
+            ...state,
+            subItem: action.data.subItem,
         };
 
     default:

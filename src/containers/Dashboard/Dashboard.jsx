@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import LineChart from '../../components/LineChart/LineChart';
-import LoadData from '../../store/actions/data';
+import LoadData, { SetSubItem } from '../../store/actions/data';
 import CSS from './Dashboard.module.css';
 
 /**
@@ -24,6 +24,12 @@ const Dashboard = () => {
      * @type {{Object {name: string, amount: float}}}
      */
     const departmentList = useSelector((state) => state.data.departmentList);
+    /**
+     * The specific cabinet, department, fund category or fund the user is looking at
+     * @constant
+     * @type {string}
+     */
+    const subItem = useSelector((state) => state.data.subItem);
     /**
      * If the app is loading or not
      * @constant
@@ -54,15 +60,28 @@ const Dashboard = () => {
     for (let index = 0; index < 12; index++) {
         // Pads 0 if less than 10, ex. 01, 02, 03
         const day = index < 9 ? `0${index + 1}` : index + 1;
-        display.push({
-            value: departmentList[index + 1].total,
-            date: `2020-${day}-01`,
-        });
+        if (subItem === '') {
+            display.push({
+                value: departmentList[index + 1].total,
+                date: `2020-${day}-01`,
+            });
+        } else {
+            display.push({
+                value: departmentList[index + 1][subItem],
+                date: `2020-${day}-01`,
+            });
+        }
     }
 
     const dropdown = [];
     Object.keys(departmentTotals).forEach((key) => {
-        dropdown.push(<li>{key}</li>);
+        dropdown.push(
+            <li>
+                <button className={CSS.Button} type='button' onClick={() => dispatch(SetSubItem(key))}>
+                    {key}
+                </button>
+            </li>,
+        );
     });
 
     return (
