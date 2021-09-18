@@ -7,13 +7,21 @@ import * as actions from '../actions/actionTypes';
 /**
  * Initial state of the app
  * @prop {bool} isLoading: Is the loading data or not
- * @prop {string} year: The year the user wants to see
+ * @prop {string} fiscalYear: The year the user wants to see
+ * @prop {object} departmentList: The list of departments and their money spent per month
+ * @prop {object} departmentTotals: The list of departments and total money spent per year
+ * @prop {object} cabinetList: The list of cabinets and their money spent per month
+ * @prop {object} cabinetTotals: The list of cabinets and total money spent per year
+ * @prop {string} subItem: The sub item the user wants to load into the line chart
+ * @prop {string} totalAmount: The total amount the colorado gov has spent
  */
 const initialState = {
     isLoading: true,
     fiscalYear: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
     departmentList: {},
     departmentTotals: {},
+    cabinetList: {},
+    cabinetTotals: {},
     subItem: '',
     totalAmount: 0.0,
 };
@@ -38,13 +46,17 @@ const dataReducer = (state = initialState, action) => {
         };
 
     case actions.LOADDATA:
-        const { department_list, total_amount, grand_totals } = action.data;
+        const {
+            department_list, total_amount, grand_totals, cabinet_list,
+        } = action.data;
 
         return {
             ...state,
             totalAmount: total_amount,
             departmentList: department_list,
             departmentTotals: grand_totals.department,
+            cabinetList: cabinet_list,
+            cabinetTotals: grand_totals.cabinet,
             isLoading: action.data.isLoading,
         };
 
