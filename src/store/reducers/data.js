@@ -12,7 +12,10 @@ import * as actions from '../actions/actionTypes';
  * @prop {object} departmentTotals: The list of departments and total money spent per year
  * @prop {object} cabinetList: The list of cabinets and their money spent per month
  * @prop {object} cabinetTotals: The list of cabinets and total money spent per year
+ * @prop {string} selection: The category selection the user is viewing
  * @prop {string} subItem: The sub item the user wants to load into the line chart
+ * @prop {object} workingDataSet: the current dataset being viewed
+ * @prop {object} totals: The monthly totals for the data set currently being used
  * @prop {string} totalAmount: The total amount the colorado gov has spent
  */
 const initialState = {
@@ -22,7 +25,10 @@ const initialState = {
     departmentTotals: {},
     cabinetList: {},
     cabinetTotals: {},
-    subItem: '',
+    selection: 'department',
+    subItem: 'total',
+    workingDataSet: null,
+    totals: null,
     totalAmount: 0.0,
 };
 
@@ -58,12 +64,38 @@ const dataReducer = (state = initialState, action) => {
             cabinetList: cabinet_list,
             cabinetTotals: grand_totals.cabinet,
             isLoading: action.data.isLoading,
+            workingDataSet: department_list,
+            totals: grand_totals.department,
         };
 
     case actions.SETSUBITEM:
         return {
             ...state,
             subItem: action.data.subItem,
+        };
+
+    case actions.SETSELECTION:
+        let workingDataSet = null;
+        let totals = null;
+
+        switch (action.data.selection) {
+        case 'department':
+            workingDataSet = state.departmentList;
+            totals = state.departmentTotals;
+            break;
+        case 'cabinet':
+            workingDataSet = state.cabinetList;
+            totals = state.cabinetTotals;
+            break;
+        default:
+            workingDataSet = state.departmentList;
+            totals = state.departmentTotals;
+        }
+        return {
+            ...state,
+            selection: action.data.selection,
+            workingDataSet,
+            totals,
         };
 
     default:

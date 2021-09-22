@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import LineChart from '../../components/LineChart/LineChart';
-import LoadData, { SetSubItem } from '../../store/actions/data';
+import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
+import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
 import CSS from './Dashboard.module.css';
 
 /**
@@ -13,23 +14,29 @@ import CSS from './Dashboard.module.css';
  */
 const Dashboard = () => {
     /**
-     * The total amount each department in the Colorado Gov has spent
-     * @constant
-     * @type {float}
-     */
-    const departmentTotals = useSelector((state) => state.data.departmentTotals);
-    /**
-     * The list of various Colorado state departments and the amount of money each has spent
+     * The current data set being viewed
      * @constant
      * @type {{Object {name: string, amount: float}}}
      */
-    const departmentList = useSelector((state) => state.data.departmentList);
+    const dataSet = useSelector((state) => state.data.workingDataSet);
+    /**
+     * The total amount for the data set being viewed
+     * @constant
+     * @type {float}
+     */
+    const totals = useSelector((state) => state.data.totals);
     /**
      * The specific cabinet, department, fund category or fund the user is looking at
      * @constant
      * @type {string}
      */
     const subItem = useSelector((state) => state.data.subItem);
+    /**
+     * The type of data the user is looking at ex. cabinet, department, fund category or fund
+     * @constant
+     * @type {string}
+     */
+    const selection = useSelector((state) => state.data.selection);
     /**
      * If the app is loading or not
      * @constant
@@ -62,19 +69,19 @@ const Dashboard = () => {
         const day = index < 9 ? `0${index + 1}` : index + 1;
         if (subItem === '') {
             display.push({
-                value: departmentList[index + 1].total,
+                value: dataSet[index + 1].total,
                 date: `2020-${day}-01`,
             });
         } else {
             display.push({
-                value: departmentList[index + 1][subItem],
+                value: dataSet[index + 1][subItem],
                 date: `2020-${day}-01`,
             });
         }
     }
 
     const dropdown = [];
-    Object.keys(departmentTotals).forEach((key) => {
+    Object.keys(totals).forEach((key) => {
         dropdown.push(
             <li>
                 <button className={CSS.Button} type='button' onClick={() => dispatch(SetSubItem(key))}>
@@ -86,6 +93,11 @@ const Dashboard = () => {
 
     return (
         <div className={CSS.Main}>
+            <DropDownMenu
+                menuList={['department', 'cabinet']}
+                selectedOption={(option) => dispatch(SetSelection(option))}
+                currentOption={selection}
+            />
             <ul className={CSS.List}>{dropdown}</ul>
             <LineChart data={{ name: 'test', color, items: display }} dimensions={dimensions} />
         </div>

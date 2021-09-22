@@ -20,4 +20,11 @@ export const SetSubItem = (subItem) => (dispatch) => {
     });
 };
 
+export const SetSelection = (selection) => (dispatch) => {
+    dispatch({
+        type: actions.SETSELECTION,
+        data: { selection },
+    });
+};
+
 export default LoadData;
