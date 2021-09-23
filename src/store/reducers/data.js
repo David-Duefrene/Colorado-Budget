@@ -12,6 +12,10 @@ import * as actions from '../actions/actionTypes';
  * @prop {object} departmentTotals: The list of departments and total money spent per year
  * @prop {object} cabinetList: The list of cabinets and their money spent per month
  * @prop {object} cabinetTotals: The list of cabinets and total money spent per year
+ * @prop {object} fundCategoryList: The list of fund categories and their money spent per month
+ * @prop {object} fundCategoryTotals: The list of fund categories and total money spent per year
+ * @prop {object} fundList: The list of fund and their money spent per month
+ * @prop {object} fundTotals: The list of fund and total money spent per year
  * @prop {string} selection: The category selection the user is viewing
  * @prop {string} subItem: The sub item the user wants to load into the line chart
  * @prop {object} workingDataSet: the current dataset being viewed
@@ -25,6 +29,10 @@ const initialState = {
     departmentTotals: {},
     cabinetList: {},
     cabinetTotals: {},
+    fundCategoryList: {},
+    fundCategoryTotals: {},
+    fundList: {},
+    fundTotals: {},
     selection: 'department',
     subItem: 'total',
     workingDataSet: null,
@@ -53,7 +61,8 @@ const dataReducer = (state = initialState, action) => {
 
     case actions.LOADDATA:
         const {
-            department_list, total_amount, grand_totals, cabinet_list,
+            department_list, total_amount, grand_totals, cabinet_list, fund_list,
+            fund_category_list,
         } = action.data;
 
         return {
@@ -63,6 +72,10 @@ const dataReducer = (state = initialState, action) => {
             departmentTotals: grand_totals.department,
             cabinetList: cabinet_list,
             cabinetTotals: grand_totals.cabinet,
+            fundCategoryList: fund_category_list,
+            fundCategoryTotals: grand_totals.fund_category,
+            fundList: fund_list,
+            fundTotals: grand_totals.fund,
             isLoading: action.data.isLoading,
             workingDataSet: department_list,
             totals: grand_totals.department,
@@ -87,6 +100,14 @@ const dataReducer = (state = initialState, action) => {
             workingDataSet = state.cabinetList;
             totals = state.cabinetTotals;
             break;
+        case 'fund_category':
+            workingDataSet = state.fundCategoryList;
+            totals = state.fundCategoryTotals;
+            break;
+        case 'fund':
+            workingDataSet = state.fundList;
+            totals = state.fundTotals;
+            break;
         default:
             workingDataSet = state.departmentList;
             totals = state.departmentTotals;
@@ -94,6 +115,7 @@ const dataReducer = (state = initialState, action) => {
         return {
             ...state,
             selection: action.data.selection,
+            subItem: 'total',
             workingDataSet,
             totals,
         };

@@ -94,7 +94,7 @@ const Dashboard = () => {
     return (
         <div className={CSS.Main}>
             <DropDownMenu
-                menuList={['department', 'cabinet']}
+                menuList={['department', 'cabinet', 'fund_category', 'fund']}
                 selectedOption={(option) => dispatch(SetSelection(option))}
                 currentOption={selection}
             />
