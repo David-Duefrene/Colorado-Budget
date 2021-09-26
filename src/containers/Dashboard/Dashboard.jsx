@@ -63,26 +63,36 @@ const Dashboard = () => {
     };
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
-    const display = [];
+    /**
+     * The data the chart is displaying
+     * @constant
+     * @type {list}
+     */
+    const chartData = [];
     for (let index = 0; index < 12; index++) {
         // Pads 0 if less than 10, ex. 01, 02, 03
         const day = index < 9 ? `0${index + 1}` : index + 1;
         if (subItem === '') {
-            display.push({
+            chartData.push({
                 value: dataSet[index + 1].total,
                 date: `2020-${day}-01`,
             });
         } else {
-            display.push({
+            chartData.push({
                 value: dataSet[index + 1][subItem],
                 date: `2020-${day}-01`,
             });
         }
     }
 
-    const dropdown = [];
+    /**
+     * The sub items the chart can display
+     * @constant
+     * @type {list}
+     */
+    const subItemList = [];
     Object.keys(totals).forEach((key) => {
-        dropdown.push(
+        subItemList.push(
             <li>
                 <button className={CSS.Button} type='button' onClick={() => dispatch(SetSubItem(key))}>
                     {key}
@@ -98,8 +108,8 @@ const Dashboard = () => {
                 selectedOption={(option) => dispatch(SetSelection(option))}
                 currentOption={selection}
             />
-            <ul className={CSS.List}>{dropdown}</ul>
-            <LineChart data={{ name: 'test', color, items: display }} dimensions={dimensions} />
+            <ul className={CSS.List}>{subItemList}</ul>
+            <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
         </div>
     );
 };
