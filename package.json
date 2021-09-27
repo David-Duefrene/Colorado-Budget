@@ -66,5 +66,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "d3": "d3"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
+    ]
   }
 }
