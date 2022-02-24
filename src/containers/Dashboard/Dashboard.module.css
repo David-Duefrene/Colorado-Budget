@@ -7,7 +7,6 @@
 .List {
     height:25em;
     overflow-y: auto;
-    display: inline-block;
     list-style: none;
 }
 
@@ -24,6 +23,8 @@
     flex-direction: column;
 }
 
-.DropDownMenu {
-
+.Stack {
+    align-content: center;
+    align-items: center;
+    max-width: 25%;
 }

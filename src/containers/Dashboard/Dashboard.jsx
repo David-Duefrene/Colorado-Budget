@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Stack from 'react-bootstrap/Stack';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import LineChart from '../../components/LineChart/LineChart';
-import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
 import CSS from './Dashboard.module.css';
 
@@ -103,15 +105,28 @@ const Dashboard = () => {
 
     return (
         <div className={CSS.Main}>
-            <div className={CSS.Selection}>
-                <DropDownMenu
-                    menuList={['department', 'cabinet', 'fund_category', 'fund']}
-                    selectedOption={(option) => dispatch(SetSelection(option))}
-                    currentOption={selection}
-                    className={CSS.DropDownMenu}
-                />
+            <Stack gap={1} className={CSS.Stack}>
+                <Dropdown>
+                    <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                        {selection}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
+                            Department
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
+                            Cabinet
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
+                            Fund Category
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
+                            Fund
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <ul className={CSS.List}>{subItemList}</ul>
-            </div>
+            </Stack>
             <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
         </div>
     );
