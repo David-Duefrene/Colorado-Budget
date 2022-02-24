@@ -103,12 +103,15 @@ const Dashboard = () => {
 
     return (
         <div className={CSS.Main}>
-            <DropDownMenu
-                menuList={['department', 'cabinet', 'fund_category', 'fund']}
-                selectedOption={(option) => dispatch(SetSelection(option))}
-                currentOption={selection}
-            />
-            <ul className={CSS.List}>{subItemList}</ul>
+            <div className={CSS.Selection}>
+                <DropDownMenu
+                    menuList={['department', 'cabinet', 'fund_category', 'fund']}
+                    selectedOption={(option) => dispatch(SetSelection(option))}
+                    currentOption={selection}
+                    className={CSS.DropDownMenu}
+                />
+                <ul className={CSS.List}>{subItemList}</ul>
+            </div>
             <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
         </div>
     );
