@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Stack from 'react-bootstrap/Stack';
 import Dropdown from 'react-bootstrap/Dropdown';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 import LineChart from '../../components/LineChart/LineChart';
 import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
@@ -95,11 +96,13 @@ const Dashboard = () => {
     const subItemList = [];
     Object.keys(totals).forEach((key) => {
         subItemList.push(
-            <li>
-                <button className={CSS.Button} type='button' onClick={() => dispatch(SetSubItem(key))}>
-                    {key}
-                </button>
-            </li>,
+            <ListGroup.Item
+                action
+                active={subItem === key}
+                onClick={() => dispatch(SetSubItem(key))}
+            >
+                {key}
+            </ListGroup.Item>,
         );
     });
 
@@ -125,7 +128,8 @@ const Dashboard = () => {
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <ul className={CSS.List}>{subItemList}</ul>
+
+                <ListGroup className={CSS.List}>{subItemList}</ListGroup>
             </Stack>
             <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
         </div>
