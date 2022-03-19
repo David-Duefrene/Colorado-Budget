@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Stack from 'react-bootstrap/Stack';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import LineChart from '../../components/LineChart/LineChart';
 import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
@@ -107,32 +110,35 @@ const Dashboard = () => {
     });
 
     return (
-        <div className={CSS.Main}>
-            <Stack gap={1} className={CSS.Stack}>
-                <Dropdown>
-                    <Dropdown.Toggle variant='success' id='dropdown-basic'>
-                        {selection}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
-                            Department
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
-                            Cabinet
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
-                            Fund Category
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
-                            Fund
-                        </Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
-
-                <ListGroup className={CSS.List}>{subItemList}</ListGroup>
-            </Stack>
-            <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
-        </div>
+        <Container className={CSS.Main}>
+            <Col md='auto'>
+                <Stack gap={1} className={CSS.Stack}>
+                    <Dropdown>
+                        <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                            {selection}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
+                                Department
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
+                                Cabinet
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
+                                Fund Category
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
+                                Fund
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <ListGroup className={CSS.List}>{subItemList}</ListGroup>
+                </Stack>
+            </Col>
+            <Col md='auto' className={CSS.LineChart}>
+                <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
+            </Col>
+        </Container>
     );
 };
 

@@ -2,6 +2,7 @@
     color: white;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .List {
@@ -26,5 +27,8 @@
 .Stack {
     align-content: center;
     align-items: center;
-    max-width: 25%;
+}
+
+.LineChart {
+    overflow-x: scroll;
 }
