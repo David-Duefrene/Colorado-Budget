@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Stack from 'react-bootstrap/Stack';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import LineChart from '../../components/LineChart/LineChart';
@@ -49,6 +49,31 @@ const Dashboard = () => {
      * @type {bool}
      */
     const isLoading = useSelector((state) => state.data.isLoading);
+
+    /**
+     * If the side panel is open or not
+     * @constant
+     * @type {state}
+     */
+    const [show, setShow] = useState(false);
+
+    /**
+     * Closes the side panel
+     * @function
+     * @returns {void}
+     * @param {}
+     * @const
+     */
+    const handleClose = () => setShow(false);
+    /**
+     * Opens the side panel
+     * @function
+     * @returns {void}
+     * @param {}
+     * @const
+     */
+    const handleShow = () => setShow(true);
+
     /**
      * The dispatch
      * @constant
@@ -100,6 +125,7 @@ const Dashboard = () => {
     Object.keys(totals).forEach((key) => {
         subItemList.push(
             <ListGroup.Item
+                className={CSS.listItem}
                 action
                 active={subItem === key}
                 onClick={() => dispatch(SetSubItem(key))}
@@ -109,31 +135,45 @@ const Dashboard = () => {
         );
     });
 
+    /**
+     * The side panel of options
+     * @constant
+     * @type {JSX}
+     */
+    const sidePanel = (
+        <div className={`${CSS.SidePanel} ${show ? CSS.SidePanelOpen : null}`}>
+            <Stack gap={1} className={CSS.Stack}>
+                <Dropdown>
+                    <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                        {selection}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
+                            Department
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
+                            Cabinet
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
+                            Fund Category
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
+                            Fund
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                <ListGroup className={CSS.List}>{subItemList}</ListGroup>
+            </Stack>
+        </div>
+    );
+
     return (
         <Container className={CSS.Main}>
             <Col md='auto'>
-                <Stack gap={1} className={CSS.Stack}>
-                    <Dropdown>
-                        <Dropdown.Toggle variant='success' id='dropdown-basic'>
-                            {selection}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
-                                Department
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
-                                Cabinet
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
-                                Fund Category
-                            </Dropdown.Item>
-                            <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
-                                Fund
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <ListGroup className={CSS.List}>{subItemList}</ListGroup>
-                </Stack>
+                <button variant='primary' onClick={show ? handleClose : handleShow}>
+                    {show ? 'Close' : 'Show'}
+                </button>
+                {sidePanel}
             </Col>
             <Col md='auto' className={CSS.LineChart}>
                 <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
