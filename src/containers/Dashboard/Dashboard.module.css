@@ -39,10 +39,16 @@
 }
 
 .SidePanel {
-    width: 10%;
-    transition: width 1s;
+    transition: opacity 1s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .SidePanelOpen {
-    width: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.Closed {
+    width: 1%;
 }

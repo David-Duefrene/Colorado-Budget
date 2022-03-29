@@ -51,6 +51,20 @@ const Dashboard = () => {
     const isLoading = useSelector((state) => state.data.isLoading);
 
     /**
+     * The width of the chart
+     * @constant
+     * @type {state}
+     */
+    const [chartWidth, setChartWidth] = useState(window.innerWidth * 0.75);
+
+    /**
+     * The height of the chart
+     * @constant
+     * @type {state}
+     */
+    const [chartHeight, setChartHeight] = useState(window.innerHeight * 0.75);
+
+    /**
      * If the side panel is open or not
      * @constant
      * @type {state}
@@ -82,12 +96,21 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     useEffect(() => { dispatch(LoadData()); }, []);
+    useEffect(() => {
+        const handleResize = () => {
+            setChartWidth(window.innerWidth * 0.75);
+            setChartHeight(window.innerHeight * 0.75);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    });
 
     if (isLoading) { return <h1>Loading!!!</h1>; }
 
     const dimensions = {
-        width: 800,
-        height: 400,
+        // Need to get height & width as viewport updates
+        width: chartWidth,
+        height: chartHeight,
         margin: {
             top: 60, right: 200, bottom: 10, left: 100,
         },
@@ -168,8 +191,8 @@ const Dashboard = () => {
     );
 
     return (
-        <Container className={CSS.Main}>
-            <Col md='auto'>
+        <Container fluid className={CSS.Main}>
+            <Col className={show ? null : CSS.Closed}>
                 <button variant='primary' onClick={show ? handleClose : handleShow}>
                     {show ? 'Close' : 'Show'}
                 </button>
