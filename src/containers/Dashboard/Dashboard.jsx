@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -7,6 +6,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import Collapse from 'react-bootstrap/Collapse';
+import Button from 'react-bootstrap/Button';
 
 import LineChart from '../../components/LineChart/LineChart';
 import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
@@ -70,23 +71,6 @@ const Dashboard = () => {
      * @type {state}
      */
     const [show, setShow] = useState(false);
-
-    /**
-     * Closes the side panel
-     * @function
-     * @returns {void}
-     * @param {}
-     * @const
-     */
-    const handleClose = () => setShow(false);
-    /**
-     * Opens the side panel
-     * @function
-     * @returns {void}
-     * @param {}
-     * @const
-     */
-    const handleShow = () => setShow(true);
 
     /**
      * The dispatch
@@ -165,7 +149,7 @@ const Dashboard = () => {
      * @type {JSX}
      */
     const sidePanel = (
-        <div className={`${CSS.SidePanel} ${show ? CSS.SidePanelOpen : null}`}>
+        <div id='testME'>
             <Stack gap={1} className={CSS.Stack}>
                 <Dropdown>
                     <Dropdown.Toggle variant='success' id='dropdown-basic'>
@@ -193,12 +177,12 @@ const Dashboard = () => {
 
     return (
         <Container fluid className={CSS.Main}>
-            <Col className={show ? null : CSS.Closed}>
-                <button variant='primary' onClick={show ? handleClose : handleShow}>
-                    {show ? 'Close' : 'Show'}
-                </button>
+            <Button variant='primary' onClick={() => setShow(!show)} aria-expanded={show} aria-controls='testME'>
+                {show ? 'Close' : 'Show'}
+            </Button>
+            <Collapse in={show} dimension='width'>
                 {sidePanel}
-            </Col>
+            </Collapse>
             <Col md='auto' className={CSS.LineChart}>
                 <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
             </Col>
