@@ -43,6 +43,7 @@ const LineChart = ({ data, dimensions }) => {
         xAxisGroup.select('.domain').remove();
         xAxisGroup.selectAll('line').attr('stroke', 'rgba(255, 255, 255, 0.2)');
         xAxisGroup.selectAll('text')
+            .attr('transform', 'rotate(-45)')
             .attr('opacity', 0.5)
             .attr('color', 'pink')
             .attr('font-size', '0.75rem');
@@ -72,7 +73,7 @@ const LineChart = ({ data, dimensions }) => {
             .attr('class', 'line');
     }, [data]); // Redraw chart if data changes
 
-    return <svg ref={svgRef} width={svgWidth} height={svgHeight} />;
+    return <svg ref={svgRef} width={svgWidth} height={svgHeight + 10} />;
 };
 
 LineChart.propTypes = {

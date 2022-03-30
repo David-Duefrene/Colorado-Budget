@@ -95,7 +95,9 @@ const Dashboard = () => {
      */
     const dispatch = useDispatch();
 
+    // Initial Data load
     useEffect(() => { dispatch(LoadData()); }, []);
+    // Resize the chart on window resize
     useEffect(() => {
         const handleResize = () => {
             setChartWidth(window.innerWidth * 0.75);
@@ -108,7 +110,6 @@ const Dashboard = () => {
     if (isLoading) { return <h1>Loading!!!</h1>; }
 
     const dimensions = {
-        // Need to get height & width as viewport updates
         width: chartWidth,
         height: chartHeight,
         margin: {
