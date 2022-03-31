@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 
 import LineChart from '../../components/LineChart/LineChart';
 import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
-import CSS from './Dashboard.module.css';
+import './theme.css';
 
 /**
  * Renders the main dashboard
@@ -133,7 +133,6 @@ const Dashboard = () => {
     Object.keys(totals).forEach((key) => {
         subItemList.push(
             <ListGroup.Item
-                className={CSS.listItem}
                 action
                 active={subItem === key}
                 onClick={() => dispatch(SetSubItem(key))}
@@ -150,12 +149,12 @@ const Dashboard = () => {
      */
     const sidePanel = (
         <div id='testME'>
-            <Stack gap={1} className={CSS.Stack}>
+            <Stack gap={1} className='Stack'>
                 <Dropdown>
-                    <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                    <Dropdown.Toggle variant='dark' id='dropdown-basic'>
                         {selection}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu variant='dark'>
                         <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
                             Department
                         </Dropdown.Item>
@@ -170,20 +169,31 @@ const Dashboard = () => {
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <ListGroup className={CSS.List}>{subItemList}</ListGroup>
+                <ListGroup variant='dark' className='List'>{subItemList}</ListGroup>
             </Stack>
         </div>
     );
 
     return (
-        <Container fluid className={CSS.Main}>
-            <Button variant='primary' onClick={() => setShow(!show)} aria-expanded={show} aria-controls='testME'>
-                {show ? 'Close' : 'Show'}
-            </Button>
-            <Collapse in={show} dimension='width'>
-                {sidePanel}
-            </Collapse>
-            <Col md='auto' className={CSS.LineChart}>
+        <Container fluid className='Main'>
+            <Col>
+                <div className='SidePanel'>
+                    <Button
+                        variant='secondary'
+                        onClick={() => setShow(!show)}
+                        aria-expanded={show}
+                        aria-controls='testME'
+                    >
+                        {show ? 'Close' : 'Show'}
+                    </Button>
+                    <Collapse in={show} dimension='width'>
+                        <div>
+                            {sidePanel}
+                        </div>
+                    </Collapse>
+                </div>
+            </Col>
+            <Col md='auto' className='LineChart'>
                 <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
             </Col>
         </Container>
