@@ -148,7 +148,7 @@ const Dashboard = () => {
      * @type {JSX}
      */
     const sidePanel = (
-        <div id='testME'>
+        <div id='SidePanelID'>
             <Stack gap={1} className='Stack'>
                 <Dropdown>
                     <Dropdown.Toggle variant='dark' id='dropdown-basic'>
@@ -177,14 +177,13 @@ const Dashboard = () => {
     return (
         <Container fluid className='Main'>
             <Col>
-                <div className='SidePanel'>
+                <div className='SidePanel d-grid gap-2'>
                     <Button
-                        variant='secondary'
                         onClick={() => setShow(!show)}
-                        aria-expanded={show}
-                        aria-controls='testME'
+                        aria-controls='SidePanelID'
+                        bsPrefix='Button'
                     >
-                        {show ? 'Close' : 'Show'}
+                        {show ? '<' : '>'}
                     </Button>
                     <Collapse in={show} dimension='width'>
                         <div>
