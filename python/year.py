@@ -44,7 +44,7 @@ for num in range(12):
     fund_category_list[str(num + 1)] = {'total': 0}
     fund_list[str(num + 1)] = {'total': 0}
 
-# For 2020 this too 4 hours to run
+# For 2020 this took 4 hours to run
 for item in data:
     date = datetime.datetime.strptime(item['journal_date'], '%Y-%m-%dT%H:%M:%S.000')
     amount = int(float(item['amount']) * 100)
