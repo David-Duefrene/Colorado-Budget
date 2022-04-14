@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/colorado-budget/static/css/main.4b4fb349.chunk.css",
+    "main.js": "/colorado-budget/static/js/main.7877f97d.chunk.js",
+    "main.js.map": "/colorado-budget/static/js/main.7877f97d.chunk.js.map",
+    "runtime-main.js": "/colorado-budget/static/js/runtime-main.0abc2d80.js",
+    "runtime-main.js.map": "/colorado-budget/static/js/runtime-main.0abc2d80.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/colorado-budget/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.b5ebf885.chunk.js": "/colorado-budget/static/js/2.b5ebf885.chunk.js",
+    "static/js/2.b5ebf885.chunk.js.map": "/colorado-budget/static/js/2.b5ebf885.chunk.js.map",
+    "static/js/3.28cc5e34.chunk.js": "/colorado-budget/static/js/3.28cc5e34.chunk.js",
+    "static/js/3.28cc5e34.chunk.js.map": "/colorado-budget/static/js/3.28cc5e34.chunk.js.map",
+    "index.html": "/colorado-budget/index.html",
+    "static/css/2.0a9ec390.chunk.css.map": "/colorado-budget/static/css/2.0a9ec390.chunk.css.map",
+    "static/css/main.4b4fb349.chunk.css.map": "/colorado-budget/static/css/main.4b4fb349.chunk.css.map",
+    "static/js/2.b5ebf885.chunk.js.LICENSE.txt": "/colorado-budget/static/js/2.b5ebf885.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0abc2d80.js",
+    "static/css/2.0a9ec390.chunk.css",
+    "static/js/2.b5ebf885.chunk.js",
+    "static/css/main.4b4fb349.chunk.css",
+    "static/js/main.7877f97d.chunk.js"
+  ]
+}
