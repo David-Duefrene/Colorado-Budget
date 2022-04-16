@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,7 +11,9 @@ import Collapse from 'react-bootstrap/Collapse';
 import Button from 'react-bootstrap/Button';
 
 import LineChart from '../../components/LineChart/LineChart';
-import LoadData, { SetSubItem, SetSelection } from '../../store/actions/data';
+import LoadData, {
+    SetSubItem, SetSelection, SetYear, SetLoading,
+} from '../../store/actions/data';
 import './theme.css';
 
 /**
@@ -20,6 +23,12 @@ import './theme.css';
  * @returns {JSX}
  */
 const Dashboard = () => {
+    /**
+     * The current year being viewed
+     * @constant
+     * @type {{Object {name: string, amount: float}}}
+     */
+    const year = useSelector((state) => state.data.fiscalYear);
     /**
      * The current data set being viewed
      * @constant
@@ -142,6 +151,19 @@ const Dashboard = () => {
         );
     });
 
+    const years = ['2017', '2018', '2019', '2020', '2021'];
+    const yearList = years.map((y) => (
+        <Dropdown.Item onClick={() => {
+            dispatch(SetYear(y));
+            dispatch(SetLoading());
+            dispatch(LoadData());
+        }}
+        >
+            {y}
+
+        </Dropdown.Item>
+    ));
+
     /**
      * The side panel of options
      * @constant
@@ -150,6 +172,14 @@ const Dashboard = () => {
     const sidePanel = (
         <div id='SidePanelID'>
             <Stack gap={1} className='Stack'>
+                <Dropdown>
+                    <Dropdown.Toggle variant='dark' id='dropdown-basic'>
+                        {year}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu variant='dark'>
+                        {yearList}
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Dropdown>
                     <Dropdown.Toggle variant='dark' id='dropdown-basic'>
                         {selection}
@@ -193,7 +223,7 @@ const Dashboard = () => {
                 </div>
             </Col>
             <Col md='auto' className='LineChart'>
-                <LineChart data={{ name: 'test', color, items: chartData }} dimensions={dimensions} />
+                <LineChart data={{ name: year, color, items: chartData }} dimensions={dimensions} />
             </Col>
         </Container>
     );

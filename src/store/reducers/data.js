@@ -50,13 +50,13 @@ const dataReducer = (state = initialState, action) => {
     case actions.ISLOADING:
         return {
             ...state,
-            isLoading: action.isLoading,
+            isLoading: !action.isLoading,
         };
 
     case actions.DATE:
         return {
             ...state,
-            fiscalYear: action.fiscalYear,
+            fiscalYear: action.data.fiscalYear,
         };
 
     case actions.LOADDATA:

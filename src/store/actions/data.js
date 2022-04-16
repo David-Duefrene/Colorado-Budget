@@ -1,9 +1,11 @@
 import axios from 'axios';
+import store from '../../store';
 
 import * as actions from './actionTypes';
 
 const LoadData = () => (dispatch) => {
-    axios.get('https://api.github.com/repos/David-Duefrene/Colorado-Budget/contents/src/store/actions/2020.json')
+    const year = store.getState().data.fiscalYear;
+    axios.get(`https://api.github.com/repos/David-Duefrene/Daves-Datasets/contents/Colorado-Budget/data/${year}.json`)
         .then((result) => {
             dispatch({
                 type: actions.LOADDATA,
@@ -28,6 +30,20 @@ export const SetSelection = (selection) => (dispatch) => {
     dispatch({
         type: actions.SETSELECTION,
         data: { selection },
+    });
+};
+
+export const SetYear = (fiscalYear) => (dispatch) => {
+    dispatch({
+        type: actions.DATE,
+        data: { fiscalYear },
+    });
+};
+
+export const SetLoading = (isLoading) => (dispatch) => {
+    dispatch({
+        type: actions.ISLOADING,
+        data: { isLoading },
     });
 };
 
