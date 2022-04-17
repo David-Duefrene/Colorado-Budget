@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Collapse from 'react-bootstrap/Collapse';
 import Button from 'react-bootstrap/Button';
 
-import LineChart from '../../components/LineChart/LineChart';
+import ChartBox from '../../components/ChartBox/ChartBox';
 import LoadData, {
     SetSubItem, SetSelection, SetYear, SetLoading,
 } from '../../store/actions/data';
@@ -223,7 +223,7 @@ const Dashboard = () => {
                 </div>
             </Col>
             <Col md='auto' className='LineChart'>
-                <LineChart data={{ name: year, color, items: chartData }} dimensions={dimensions} />
+                <ChartBox data={{ name: year, color, items: chartData }} dimensions={dimensions} />
             </Col>
         </Container>
     );
