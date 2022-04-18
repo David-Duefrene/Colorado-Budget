@@ -2,15 +2,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
-import LoadData, {
-    SetSubItem, SetSelection, SetYear, SetLoading,
-} from '../../store/actions/data';
+import SubSelection from './SubSelection/SubSelection';
+import LoadData, { SetSelection, SetYear, SetLoading } from '../../store/actions/data';
 
 import './SidePanel.css';
 
@@ -21,24 +19,14 @@ const SidePanel = () => {
      * @type {{Object {name: string, amount: float}}}
      */
     const year = useSelector((state) => state.data.fiscalYear);
-    /**
-     * The total amount for the data set being viewed
-     * @constant
-     * @type {float}
-     */
-    const totals = useSelector((state) => state.data.totals);
-    /**
-      * The specific cabinet, department, fund category or fund the user is looking at
-      * @constant
-      * @type {string}
-      */
-    const subItem = useSelector((state) => state.data.subItem);
+
     /**
      * The type of data the user is looking at ex. cabinet, department, fund category or fund
      * @constant
      * @type {string}
      */
     const selection = useSelector((state) => state.data.selection);
+
     /**
      * The dispatch
      * @constant
@@ -52,24 +40,6 @@ const SidePanel = () => {
      * @type {state}
      */
     const [show, setShow] = useState(false);
-
-    /**
-     * The sub items the chart can display
-     * @constant
-     * @type {list}
-     */
-    const subItemList = [];
-    Object.keys(totals).forEach((key) => {
-        subItemList.push(
-            <ListGroup.Item
-                action
-                active={subItem === key}
-                onClick={() => dispatch(SetSubItem(key))}
-            >
-                {key}
-            </ListGroup.Item>,
-        );
-    });
 
     const years = ['2017', '2018', '2019', '2020', '2021'];
     const yearList = years.map((y) => (
@@ -124,7 +94,7 @@ const SidePanel = () => {
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <ListGroup variant='dark' className='List'>{subItemList}</ListGroup>
+                            <SubSelection />
                         </Stack>
                     </div>
                 </div>
