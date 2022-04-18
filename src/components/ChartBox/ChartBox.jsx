@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import LineChart from '../LineChart/LineChart';
 
-const ChatBox = ({ data, dimensions }) => {
+/**
+ *  ChartBox is a React wrapper for LineChart.
+ * @param {object} data
+ * @param {object} dimensions
+ * @returns <svg>
+ */
+const ChartBox = ({ data, dimensions }) => {
     const svgRef = React.useRef(null);
     const { width, height, margin } = dimensions;
     const svgWidth = width + margin.left + margin.right;
@@ -16,7 +22,7 @@ const ChatBox = ({ data, dimensions }) => {
     return <svg ref={svgRef} width={svgWidth} height={svgHeight + 10} />;
 };
 
-ChatBox.propTypes = {
+ChartBox.propTypes = {
     data: PropTypes.shape({
         color: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
@@ -40,4 +46,4 @@ ChatBox.propTypes = {
         }).isRequired,
 };
 
-export default ChatBox;
+export default ChartBox;

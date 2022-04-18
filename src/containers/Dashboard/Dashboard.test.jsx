@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -11,6 +12,7 @@ import testData from './testData.json';
 
 const mockStore = configureMockStore([thunk]);
 configure({ adapter: new Adapter() });
+jest.mock('../../components/LineChart/LineChart');
 
 describe('<Dashboard />', () => {
     let wrapper;
@@ -38,17 +40,8 @@ describe('<Dashboard />', () => {
         wrapper = mount(<Provider store={store}><Dashboard /></Provider>);
     });
 
-    it('should have 2 divs, a dropdown list', () => {
-        expect(wrapper.find('div')).toHaveLength(2);
-        expect(wrapper.find('.DropdownList')).toHaveLength(1);
-    });
-
-    it('should have a 4 item dropdown selection list', () => {
-        const dropDownItems = (wrapper.find('.DropdownItem'));
-        expect(dropDownItems).toHaveLength(4);
-    });
-
-    it('should switch to following tab', () => {
-        expect(wrapper.find('LineChart')).toHaveLength(1);
+    it('should have 2 columns, a dropdown list', () => {
+        expect(wrapper.find('Col')).toHaveLength(2);
+        expect(wrapper.find('Dropdown')).toHaveLength(4);
     });
 });
