@@ -7,8 +7,9 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
+import Selection from './Selection/Selection';
 import SubSelection from './SubSelection/SubSelection';
-import LoadData, { SetSelection, SetYear, SetLoading } from '../../store/actions/data';
+import LoadData, { SetYear, SetLoading } from '../../store/actions/data';
 
 import './SidePanel.css';
 
@@ -19,13 +20,6 @@ const SidePanel = () => {
      * @type {{Object {name: string, amount: float}}}
      */
     const year = useSelector((state) => state.data.fiscalYear);
-
-    /**
-     * The type of data the user is looking at ex. cabinet, department, fund category or fund
-     * @constant
-     * @type {string}
-     */
-    const selection = useSelector((state) => state.data.selection);
 
     /**
      * The dispatch
@@ -75,25 +69,7 @@ const SidePanel = () => {
                                     {yearList}
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Dropdown>
-                                <Dropdown.Toggle variant='dark' id='dropdown-basic'>
-                                    {selection}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu variant='dark'>
-                                    <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
-                                        Department
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
-                                        Cabinet
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
-                                        Fund Category
-                                    </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
-                                        Fund
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <Selection />
                             <SubSelection />
                         </Stack>
                     </div>
