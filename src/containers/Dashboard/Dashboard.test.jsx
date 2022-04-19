@@ -19,7 +19,8 @@ describe('<Dashboard />', () => {
     const store = mockStore({
         data: {
             isLoading: false,
-            fiscalYear: '2020',
+            year: '2020',
+            yearList: ['2017', '2018', '2019', '2020', '2021'],
             departmentList: testData,
             departmentTotals: testData,
             cabinetList: testData,

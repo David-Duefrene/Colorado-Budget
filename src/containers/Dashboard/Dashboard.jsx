@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 
 import ChartBox from '../../components/ChartBox/ChartBox';
 import SidePanel from '../../components/SidePanel/SidePanel';
-import LoadData from '../../store/actions/data';
+import LoadData, { SetYearList } from '../../store/actions/data';
 import './theme.css';
 
 /**
@@ -63,7 +63,10 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     // Initial Data load
-    useEffect(() => { dispatch(LoadData()); }, []);
+    useEffect(() => {
+        dispatch(LoadData());
+        dispatch(SetYearList());
+    }, []);
     // Resize the chart on window resize
     useEffect(() => {
         const handleResize = () => {

@@ -12,6 +12,14 @@ const Selection = () => {
      * @type {{Object {name: string, amount: float}}}
      */
     const year = useSelector((state) => state.data.year);
+
+    /**
+     * List of years to be displayed in the dropdown
+     * @constant
+     * @type {Array of Strings}
+     */
+    const yearList = useSelector((state) => state.data.yearList);
+
     /**
      * The dispatch
      * @constant
@@ -19,8 +27,7 @@ const Selection = () => {
      */
     const dispatch = useDispatch();
 
-    const years = ['2017', '2018', '2019', '2020', '2021'];
-    const yearList = years.map((y) => (
+    const itemList = yearList.map((y) => (
         <Dropdown.Item
             onClick={() => {
                 dispatch(SetYear(y));
@@ -40,7 +47,7 @@ const Selection = () => {
                 {year}
             </Dropdown.Toggle>
             <Dropdown.Menu variant='dark'>
-                {yearList}
+                {itemList}
             </Dropdown.Menu>
         </Dropdown>
     );

@@ -16,6 +16,7 @@ describe('<Year />', () => {
     const store = mockStore({
         data: {
             year: '2019',
+            yearList: ['2017', '2018', '2019', '2020', '2021'],
         },
     });
 

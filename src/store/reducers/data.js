@@ -1,13 +1,12 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-case-declarations */
-import { DateTime } from 'luxon';
-
 import * as actions from '../actions/actionTypes';
 
 /**
  * Initial state of the app
  * @prop {bool} isLoading: Is the loading data or not
  * @prop {string} year: The year the user wants to see
+ * @prop {array} yearList: a list of years available
  * @prop {object} departmentList: The list of departments and their money spent per month
  * @prop {object} departmentTotals: The list of departments and total money spent per year
  * @prop {object} cabinetList: The list of cabinets and their money spent per month
@@ -24,7 +23,8 @@ import * as actions from '../actions/actionTypes';
  */
 const initialState = {
     isLoading: true,
-    year: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
+    year: '2020', // new Date().getFullYear(), temp hack until I run this years data
+    yearList: [],
     departmentList: {},
     departmentTotals: {},
     cabinetList: {},
@@ -56,7 +56,13 @@ const dataReducer = (state = initialState, action) => {
     case actions.DATE:
         return {
             ...state,
-            year: action.data.fiscalYear,
+            year: action.data.year,
+        };
+
+    case actions.SETYEARLIST:
+        return {
+            ...state,
+            yearList: action.data.yearList,
         };
 
     case actions.LOADDATA:

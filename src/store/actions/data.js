@@ -5,6 +5,7 @@ import * as actions from './actionTypes';
 
 const LoadData = () => (dispatch) => {
     const { year } = store.getState().data;
+
     axios.get(`https://api.github.com/repos/David-Duefrene/Daves-Datasets/contents/Colorado-Budget/data/${year}.json`)
         .then((result) => {
             dispatch({
@@ -45,6 +46,20 @@ export const SetLoading = (isLoading) => (dispatch) => {
         type: actions.ISLOADING,
         data: { isLoading },
     });
+};
+
+export const SetYearList = () => (dispatch) => {
+    axios.get(`https://api.github.com/repos/David-Duefrene/Daves-Datasets/contents/Colorado-Budget/data/`)
+        .then((result) => {
+            dispatch({
+                type: actions.SETYEARLIST,
+                data: {
+                    yearList: result.data.map((element) => element.name.replace('.json', '')),
+                },
+            });
+        }).catch((error) => {
+            console.log(error);
+        });
 };
 
 export default LoadData;
