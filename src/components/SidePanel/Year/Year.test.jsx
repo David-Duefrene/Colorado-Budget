@@ -15,7 +15,7 @@ describe('<Year />', () => {
     let wrapper;
     const store = mockStore({
         data: {
-            fiscalYear: '2019',
+            year: '2019',
         },
     });
 
@@ -47,15 +47,15 @@ describe('<Year />', () => {
         const dropdownLinks = wrapper.find('a');
 
         dropdownLinks.at(1).simulate('click');
-        expect(store.getActions()[0]).toEqual({ data: { fiscalYear: '2018' }, type: 'DATE' });
+        expect(store.getActions()[0]).toEqual({ data: { year: '2018' }, type: 'DATE' });
         store.clearActions();
 
         dropdownLinks.at(2).simulate('click');
-        expect(store.getActions()[0]).toEqual({ data: { fiscalYear: '2019' }, type: 'DATE' });
+        expect(store.getActions()[0]).toEqual({ data: { year: '2019' }, type: 'DATE' });
         store.clearActions();
 
         dropdownLinks.at(3).simulate('click');
-        expect(store.getActions()[0]).toEqual({ data: { fiscalYear: '2020' }, type: 'DATE' });
+        expect(store.getActions()[0]).toEqual({ data: { year: '2020' }, type: 'DATE' });
         store.clearActions();
     });
 });

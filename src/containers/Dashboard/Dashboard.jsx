@@ -21,7 +21,7 @@ const Dashboard = () => {
      * @constant
      * @type {{Object {name: string, amount: float}}}
      */
-    const year = useSelector((state) => state.data.fiscalYear);
+    const year = useSelector((state) => state.data.year);
     /**
      * The current data set being viewed
      * @constant

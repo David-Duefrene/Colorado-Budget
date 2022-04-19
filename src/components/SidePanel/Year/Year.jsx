@@ -11,7 +11,7 @@ const Selection = () => {
      * @constant
      * @type {{Object {name: string, amount: float}}}
      */
-    const year = useSelector((state) => state.data.fiscalYear);
+    const year = useSelector((state) => state.data.year);
     /**
      * The dispatch
      * @constant

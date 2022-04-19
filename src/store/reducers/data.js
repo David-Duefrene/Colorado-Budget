@@ -7,7 +7,7 @@ import * as actions from '../actions/actionTypes';
 /**
  * Initial state of the app
  * @prop {bool} isLoading: Is the loading data or not
- * @prop {string} fiscalYear: The year the user wants to see
+ * @prop {string} year: The year the user wants to see
  * @prop {object} departmentList: The list of departments and their money spent per month
  * @prop {object} departmentTotals: The list of departments and total money spent per year
  * @prop {object} cabinetList: The list of cabinets and their money spent per month
@@ -24,7 +24,7 @@ import * as actions from '../actions/actionTypes';
  */
 const initialState = {
     isLoading: true,
-    fiscalYear: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
+    year: DateTime.now().minus({ years: 1 }).toFormat('yyyy'),
     departmentList: {},
     departmentTotals: {},
     cabinetList: {},
@@ -56,7 +56,7 @@ const dataReducer = (state = initialState, action) => {
     case actions.DATE:
         return {
             ...state,
-            fiscalYear: action.data.fiscalYear,
+            year: action.data.fiscalYear,
         };
 
     case actions.LOADDATA:

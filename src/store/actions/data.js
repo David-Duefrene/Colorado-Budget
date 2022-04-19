@@ -4,7 +4,7 @@ import store from '../../store';
 import * as actions from './actionTypes';
 
 const LoadData = () => (dispatch) => {
-    const year = store.getState().data.fiscalYear;
+    const { year } = store.getState().data;
     axios.get(`https://api.github.com/repos/David-Duefrene/Daves-Datasets/contents/Colorado-Budget/data/${year}.json`)
         .then((result) => {
             dispatch({
@@ -33,10 +33,10 @@ export const SetSelection = (selection) => (dispatch) => {
     });
 };
 
-export const SetYear = (fiscalYear) => (dispatch) => {
+export const SetYear = (year) => (dispatch) => {
     dispatch({
         type: actions.DATE,
-        data: { fiscalYear },
+        data: { year },
     });
 };
 
