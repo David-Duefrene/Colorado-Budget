@@ -7,3 +7,8 @@
 .LineChart {
     overflow-x: scroll;
 }
+
+body {
+    --main-color: black;
+    background-color: var(--main-color);
+}

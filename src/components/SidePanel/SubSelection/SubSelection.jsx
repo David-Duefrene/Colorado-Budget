@@ -36,6 +36,7 @@ const SidePanel = () => {
     Object.keys(totals).forEach((key) => {
         subItemList.push(
             <ListGroup.Item
+                key={key}
                 action
                 active={subItem === key}
                 onClick={() => dispatch(SetSubItem(key))}

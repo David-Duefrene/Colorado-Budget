@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import ChartBox from '../../components/ChartBox/ChartBox';
 import SidePanel from '../../components/SidePanel/SidePanel';
 import LoadData, { SetYearList } from '../../store/actions/data';
-import './theme.css';
+import './Dashboard.css';
 
 /**
  * Renders the main dashboard
