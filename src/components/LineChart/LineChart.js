@@ -31,11 +31,10 @@ const LineChart = ({ data, dimensions, svgRef }) => {
         .attr('transform', `translate(0, ${height - margin.bottom})`)
         .call(xAxis);
     xAxisGroup.select('.domain').remove();
-    xAxisGroup.selectAll('line').attr('stroke', 'rgba(255, 255, 255, 0.2)');
+    xAxisGroup.selectAll('line').attr('stroke', 'var(--alt-color)');
     xAxisGroup.selectAll('text')
         .attr('transform', 'rotate(-45)')
-        .attr('opacity', 0.5)
-        .attr('color', 'pink')
+        .attr('color', 'var(--alt-color)')
         .attr('font-size', '0.75rem');
 
     // Add Y grid lines with labels
@@ -44,10 +43,9 @@ const LineChart = ({ data, dimensions, svgRef }) => {
         .tickFormat((val) => val);
     const yAxisGroup = svg.append('g').call(yAxis);
     yAxisGroup.select('.domain').remove();
-    yAxisGroup.selectAll('line').attr('stroke', 'rgba(255, 255, 255, 0.2)');
+    yAxisGroup.selectAll('line').attr('stroke', 'var(--alt-color)');
     yAxisGroup.selectAll('text')
-        .attr('opacity', 0.5)
-        .attr('color', 'white')
+        .attr('color', 'var(--alt-color)')
         .attr('font-size', '0.75rem');
 
     // Draw the lines
@@ -57,12 +55,10 @@ const LineChart = ({ data, dimensions, svgRef }) => {
 
     svg.append('path')
         .attr('d', line(data.items))
-        .attr('stroke', 'white')
+        .attr('stroke', 'var(--alt-color)')
         .attr('stroke-width', 2)
         .attr('fill', 'none')
         .attr('class', 'line');
-
-    return svg;
 };
 
 LineChart.propTypes = {

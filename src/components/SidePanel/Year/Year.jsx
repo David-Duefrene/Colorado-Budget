@@ -43,10 +43,10 @@ const Selection = () => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle variant='dark' id='dropdown-basic'>
+            <Dropdown.Toggle id='dropdown-basic'>
                 {year}
             </Dropdown.Toggle>
-            <Dropdown.Menu variant='dark'>
+            <Dropdown.Menu>
                 {itemList}
             </Dropdown.Menu>
         </Dropdown>

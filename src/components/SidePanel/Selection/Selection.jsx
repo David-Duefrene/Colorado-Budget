@@ -22,10 +22,10 @@ const Selection = () => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle variant='dark' id='dropdown-basic'>
+            <Dropdown.Toggle id='dropdown-basic'>
                 {selection}
             </Dropdown.Toggle>
-            <Dropdown.Menu variant='dark'>
+            <Dropdown.Menu>
                 <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
                     Department
                 </Dropdown.Item>

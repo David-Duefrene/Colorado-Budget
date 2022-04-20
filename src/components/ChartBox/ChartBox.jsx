@@ -24,7 +24,6 @@ const ChartBox = ({ data, dimensions }) => {
 
 ChartBox.propTypes = {
     data: PropTypes.shape({
-        color: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         items: PropTypes.arrayOf(
             PropTypes.shape({

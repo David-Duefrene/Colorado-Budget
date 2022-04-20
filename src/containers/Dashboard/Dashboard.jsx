@@ -86,7 +86,6 @@ const Dashboard = () => {
             top: 60, right: 200, bottom: 10, left: 100,
         },
     };
-    const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
     /**
      * The data the chart is displaying
@@ -116,7 +115,7 @@ const Dashboard = () => {
                 <SidePanel />
             </Col>
             <Col md='auto' className='LineChart'>
-                <ChartBox data={{ name: year, color, items: chartData }} dimensions={dimensions} />
+                <ChartBox data={{ name: year, items: chartData }} dimensions={dimensions} />
             </Col>
         </Container>
     );

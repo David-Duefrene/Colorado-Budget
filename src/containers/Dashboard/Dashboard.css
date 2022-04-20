@@ -1,14 +1,13 @@
 .Main {
-    color: white;
+    color: var(--text-color);
     display: flex;
     flex-direction: row;
 }
 
-.LineChart {
-    overflow-x: scroll;
-}
-
 body {
-    --main-color: black;
+    --main-color: rgb(34, 34, 34);
+    --text-color: rgb(255, 255, 255);
+    --alt-color: rgb(243, 234, 234);
+    --secondary-color: linear-gradient(45deg, var(--main-color), var(--alt-color) 95%);
     background-color: var(--main-color);
 }

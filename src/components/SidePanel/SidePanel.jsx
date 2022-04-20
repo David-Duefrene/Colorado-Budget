@@ -23,7 +23,6 @@ const SidePanel = () => {
             <Button
                 onClick={() => setShow(!show)}
                 aria-controls='SidePanelID'
-                bsPrefix='Button'
             >
                 {show ? '<' : '>'}
             </Button>
