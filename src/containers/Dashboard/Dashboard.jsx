@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 
-import ThemeSwitch from '../../components/ThemeSwitch/ThemeSwitch';
 import ChartBox from '../../components/ChartBox/ChartBox';
 import SidePanel from '../../components/SidePanel/SidePanel';
+import Title from '../../components/Title/Title';
 
 import LoadData, { SetYearList } from '../../store/actions/data';
 
@@ -118,7 +118,7 @@ const Dashboard = () => {
                 <SidePanel />
             </Col>
             <Col md='auto' className='LineChart'>
-                <ThemeSwitch />
+                <Title year={year} />
                 <ChartBox data={{ name: year, items: chartData }} dimensions={dimensions} />
             </Col>
         </Container>
