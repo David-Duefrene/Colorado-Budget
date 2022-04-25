@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { SetSubItem } from '../../../store/actions/data';
+import { SetSubItem } from '../../store/actions/data';
 
 import './SubSelection.css';
 

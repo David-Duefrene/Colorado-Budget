@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 
 import ChartBox from '../../components/ChartBox/ChartBox';
-import SidePanel from '../../components/SidePanel/SidePanel';
+import SidePanel from '../SidePanel/SidePanel';
 import Title from '../../components/Title/Title';
 
 import LoadData, { SetYearList } from '../../store/actions/data';

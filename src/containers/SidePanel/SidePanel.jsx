@@ -4,9 +4,9 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 
-import Year from './Year/Year';
-import Selection from './Selection/Selection';
-import SubSelection from './SubSelection/SubSelection';
+import Year from '../../components/Year/Year';
+import Selection from '../../components/Selection/Selection';
+import SubSelection from '../../components/SubSelection/SubSelection';
 
 import './SidePanel.css';
 

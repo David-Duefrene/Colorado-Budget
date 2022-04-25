@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import { SetSelection } from '../../../store/actions/data';
+import { SetSelection } from '../../store/actions/data';
 
 const Selection = () => {
     /**
