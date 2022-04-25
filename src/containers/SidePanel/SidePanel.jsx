@@ -8,7 +8,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import Year from '../../components/Year/Year';
 import Selection from '../../components/Selection/Selection';
 import SubSelection from '../../components/SubSelection/SubSelection';
-import { SetSelection } from '../../store/actions/data';
+import { SetSelection, SetSubItem } from '../../store/actions/data';
 
 import './SidePanel.css';
 
@@ -27,6 +27,21 @@ const SidePanel = () => {
     const selection = useSelector((state) => state.data.selection);
 
     /**
+     * The type of sub data the user is looking at ex. the individual cabinet, department,
+     * fund category or fund
+     * @constant
+     * @type {string}
+     */
+    const subItem = useSelector((state) => state.data.subItem);
+
+    /**
+     * The totals of the selection the user is looking at
+     * @constant
+     * @type {string}
+     */
+    const totals = useSelector((state) => state.data.totals);
+
+    /**
      * The dispatch
      * @constant
      * @type {function}
@@ -42,6 +57,15 @@ const SidePanel = () => {
      * @returns {void}
      */
     const dispatchSelection = (s) => dispatch(SetSelection(s));
+    /**
+     * Dispatches the data Sub selection the user wants to view
+     * @constant
+     * @type {function}
+     * @param {string} selection - The type of data the user is looking at ex. cabinet, department,
+     *      fund_category or fund
+     * @returns {void}
+     */
+    const dispatchSubSelection = (key) => dispatch(SetSubItem(key));
 
     return (
         <div className='SidePanel d-grid gap-2'>
@@ -60,7 +84,11 @@ const SidePanel = () => {
                                 selection={selection}
                                 dispatchSelection={dispatchSelection}
                             />
-                            <SubSelection />
+                            <SubSelection
+                                totals={totals}
+                                subItem={subItem}
+                                dispatch={dispatchSubSelection}
+                            />
                         </Stack>
                     </div>
                 </div>

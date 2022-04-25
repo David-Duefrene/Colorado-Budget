@@ -56,6 +56,7 @@ const dataReducer = (state = initialState, action) => {
     case actions.DATE:
         return {
             ...state,
+            subItem: 'total',
             year: action.data.year,
         };
 

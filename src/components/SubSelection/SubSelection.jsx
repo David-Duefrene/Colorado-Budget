@@ -1,32 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { SetSubItem } from '../../store/actions/data';
-
 import './SubSelection.css';
 
-const SidePanel = () => {
-    /**
-     * The total amount for the data set being viewed
-     * @constant
-     * @type {float}
-     */
-    const totals = useSelector((state) => state.data.totals);
-    /**
-       * The specific cabinet, department, fund category or fund the user is looking at
-       * @constant
-       * @type {string}
-       */
-    const subItem = useSelector((state) => state.data.subItem);
+const SidePanel = (props) => {
+    const { totals, subItem, dispatch } = props;
 
-    /**
-     * The dispatch
-     * @constant
-     * @type {function}
-     */
-    const dispatch = useDispatch();
     /**
      * The sub items the chart can display
      * @constant
@@ -39,7 +20,7 @@ const SidePanel = () => {
                 key={key}
                 action
                 active={subItem === key}
-                onClick={() => dispatch(SetSubItem(key))}
+                onClick={() => dispatch(key)}
             >
                 {key}
             </ListGroup.Item>,
@@ -49,6 +30,12 @@ const SidePanel = () => {
     return (
         <ListGroup className='List'>{subItemList}</ListGroup>
     );
+};
+
+SidePanel.propTypes = {
+    totals: PropTypes.objectOf(PropTypes.number).isRequired,
+    subItem: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
 };
 
 export default SidePanel;
