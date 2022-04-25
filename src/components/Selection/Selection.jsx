@@ -1,24 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import { SetSelection } from '../../store/actions/data';
-
-const Selection = () => {
+/**
+ * A dropdown menu for selecting what dataset to view
+ * @component
+ * @requires react
+ * @requires react-bootstrap
+ * @returns {JSX}
+ */
+const Selection = (props) => {
     /**
      * The type of data the user is looking at ex. cabinet, department, fund category or fund
      * @constant
      * @type {string}
      */
-    const selection = useSelector((state) => state.data.selection);
-
-    /**
-     * The dispatch
-     * @constant
-     * @type {function}
-     */
-    const dispatch = useDispatch();
+    const { selection, dispatchSelection } = props;
 
     return (
         <Dropdown>
@@ -26,21 +24,26 @@ const Selection = () => {
                 {selection}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item onClick={() => dispatch(SetSelection('department'))}>
+                <Dropdown.Item onClick={() => dispatchSelection('department')}>
                     Department
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatch(SetSelection('cabinet'))}>
+                <Dropdown.Item onClick={() => dispatchSelection('cabinet')}>
                     Cabinet
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatch(SetSelection('fund_category'))}>
+                <Dropdown.Item onClick={() => dispatchSelection('fund_category')}>
                     Fund Category
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatch(SetSelection('fund'))}>
+                <Dropdown.Item onClick={() => dispatchSelection('fund')}>
                     Fund
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
+};
+
+Selection.propTypes = {
+    selection: PropTypes.string.isRequired,
+    dispatchSelection: PropTypes.func.isRequired,
 };
 
 export default Selection;
