@@ -1,3 +1,7 @@
+.list-group {
+    min-height: 75vh;
+}
+
 .list-group-item {
     padding: 5px;
     margin-top: -1px;
@@ -23,9 +27,4 @@
     height: 35em;
     list-style: none;
     overflow-y: scroll;
-}
-
-.Selection {
-    display: flex;
-    flex-direction: column;
 }
