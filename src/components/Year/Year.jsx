@@ -1,43 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import LoadData, { SetYear, SetLoading } from '../../store/actions/data';
-
-const Selection = () => {
-    /**
-     * The current year being viewed
-     * @constant
-     * @type {{Object {name: string, amount: float}}}
-     */
-    const year = useSelector((state) => state.data.year);
-
-    /**
-     * List of years to be displayed in the dropdown
-     * @constant
-     * @type {Array of Strings}
-     */
-    const yearList = useSelector((state) => state.data.yearList);
-
-    /**
-     * The dispatch
-     * @constant
-     * @type {function}
-     */
-    const dispatch = useDispatch();
+const Selection = (props) => {
+    const { year, yearList, changeYear } = props;
 
     const itemList = yearList.map((y) => (
         <Dropdown.Item
-            onClick={() => {
-                dispatch(SetYear(y));
-                dispatch(SetLoading());
-                dispatch(LoadData());
-            }}
+            onClick={() => changeYear(y)}
             key={`year-${y}`}
         >
             {y}
-
         </Dropdown.Item>
     ));
 
@@ -51,6 +25,12 @@ const Selection = () => {
             </Dropdown.Menu>
         </Dropdown>
     );
+};
+
+Selection.propTypes = {
+    year: PropTypes.string.isRequired,
+    yearList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    changeYear: PropTypes.func.isRequired,
 };
 
 export default Selection;

@@ -8,7 +8,9 @@ import Collapse from 'react-bootstrap/Collapse';
 import Year from '../../components/Year/Year';
 import Selection from '../../components/Selection/Selection';
 import SubSelection from '../../components/SubSelection/SubSelection';
-import { SetSelection, SetSubItem } from '../../store/actions/data';
+import LoadData, {
+    SetSelection, SetSubItem, SetYear, SetLoading,
+} from '../../store/actions/data';
 
 import './SidePanel.css';
 
@@ -42,7 +44,22 @@ const SidePanel = () => {
     const totals = useSelector((state) => state.data.totals);
 
     /**
-     * The dispatch
+     * The current year the user is looking at
+     * @constant
+     * @type {string}
+     * @default '2020'
+     */
+    const currentYear = useSelector((state) => state.data.year);
+
+    /**
+     * The list of years the user can look at
+     * @constant
+     * @type {list}
+     */
+    const yearList = useSelector((state) => state.data.yearList);
+
+    /**
+     * The dispatch function to update the store
      * @constant
      * @type {function}
      */
@@ -79,7 +96,15 @@ const SidePanel = () => {
                 <div>
                     <div id='SidePanelID'>
                         <Stack gap={1} className='Stack'>
-                            <Year />
+                            <Year
+                                year={currentYear}
+                                yearList={yearList}
+                                changeYear={(y) => {
+                                    dispatch(SetLoading());
+                                    dispatch(SetYear(y));
+                                    dispatch(LoadData());
+                                }}
+                            />
                             <Selection
                                 selection={selection}
                                 dispatchSelection={dispatchSelection}
