@@ -27,12 +27,14 @@ const ThemeSwitch = () => {
         if (theme === 'dark') {
             document.documentElement.style.setProperty('--main-color', 'hsl(0, 0%, 90%)');
             document.documentElement.style.setProperty('--text-color', 'hsl(0, 0%, 0%)');
-            document.documentElement.style.setProperty('--alt-color', 'hsl(0, 3%, 30%)');
+            document.documentElement.style.setProperty('--line-color', 'hsl(265, 100%, 47%)');
+            document.documentElement.style.setProperty('--alt-color', 'hsla(258.1, 100%, 35.1%, 0.59)');
             setTheme('light');
             return;
         }
         document.documentElement.style.setProperty('--main-color', 'hsl(0, 0%, 13%)');
         document.documentElement.style.setProperty('--text-color', 'hsl(0, 0%, 100%)');
+        document.documentElement.style.setProperty('--line-color', 'hsl(267, 95%, 76%)');
         document.documentElement.style.setProperty('--alt-color', 'hsl(0, 27%, 94%)');
         setTheme('dark');
     };

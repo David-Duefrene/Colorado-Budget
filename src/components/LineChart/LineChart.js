@@ -34,7 +34,7 @@ const LineChart = ({ data, dimensions, svgRef }) => {
     xAxisGroup.selectAll('line').attr('stroke', 'var(--alt-color)');
     xAxisGroup.selectAll('text')
         .attr('transform', 'rotate(-45)')
-        .attr('color', 'var(--alt-color)')
+        .attr('color', 'var(--text-color)')
         .attr('font-size', '0.75rem');
 
     // Add Y grid lines with labels
@@ -45,17 +45,17 @@ const LineChart = ({ data, dimensions, svgRef }) => {
     yAxisGroup.select('.domain').remove();
     yAxisGroup.selectAll('line').attr('stroke', 'var(--alt-color)');
     yAxisGroup.selectAll('text')
-        .attr('color', 'var(--alt-color)')
+        .attr('color', 'var(--text-color)')
         .attr('font-size', '0.75rem');
 
-    // Draw the lines
+    // Draw the line
     const line = d3.line()
         .x((d) => xScale(parseDate(d.date)))
         .y((d) => yScale(d.value));
 
     svg.append('path')
         .attr('d', line(data.items))
-        .attr('stroke', 'var(--alt-color)')
+        .attr('stroke', 'var(--line-color)')
         .attr('stroke-width', 2)
         .attr('fill', 'none')
         .attr('class', 'line');
