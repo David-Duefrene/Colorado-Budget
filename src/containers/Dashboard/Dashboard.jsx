@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
@@ -45,20 +45,6 @@ const Dashboard = () => {
     const isLoading = useSelector((state) => state.data.isLoading);
 
     /**
-     * The width of the chart
-     * @constant
-     * @type {state}
-     */
-    const [chartWidth, setChartWidth] = useState(window.innerWidth * 0.75);
-
-    /**
-     * The height of the chart
-     * @constant
-     * @type {state}
-     */
-    const [chartHeight, setChartHeight] = useState(window.innerHeight * 0.75);
-
-    /**
      * The dispatch
      * @constant
      * @type {function}
@@ -70,25 +56,8 @@ const Dashboard = () => {
         dispatch(LoadData());
         dispatch(SetYearList());
     }, []);
-    // Resize the chart on window resize
-    useEffect(() => {
-        const handleResize = () => {
-            setChartWidth(window.innerWidth * 0.75);
-            setChartHeight(window.innerHeight * 0.75);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    });
 
     if (isLoading) { return <h1>Loading!!!</h1>; }
-
-    const dimensions = {
-        width: chartWidth,
-        height: chartHeight,
-        margin: {
-            top: 60, right: 200, bottom: 10, left: 100,
-        },
-    };
 
     /**
      * The data the chart is displaying
@@ -114,12 +83,12 @@ const Dashboard = () => {
 
     return (
         <Container fluid className='Main'>
-            <Col>
+            <Col xs='1'>
                 <SidePanel />
             </Col>
-            <Col md='auto' className='LineChart'>
+            <Col xs='auto' className='LineChart'>
                 <Title year={year} />
-                <ChartBox data={{ name: year, items: chartData }} dimensions={dimensions} />
+                <ChartBox data={{ name: year, items: chartData }} />
             </Col>
         </Container>
     );

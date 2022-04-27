@@ -3,32 +3,34 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
 const LineChart = ({ data, dimensions, svgRef }) => {
-    const { width, height, margin } = dimensions;
+    const { width, height } = dimensions;
     const parseDate = d3.timeParse('%Y-%m-%d');
     const xScale = d3.scaleTime()
         .domain(d3.extent(data.items, (d) => parseDate(d.date)))
         .range([0, width]);
 
+    const min = d3.min(data.items, (d) => d.value);
+    const max = d3.max(data.items, (d) => d.value);
     const yScale = d3.scaleLinear()
         .domain([
-            d3.min(data.items, (d) => d.value) * 1.1,
-            d3.max(data.items, (d) => d.value) * 1.1,
+            min < 0 ? min * 1.25 : min * 0.75,
+            max < 0 ? max * 0.75 : max * 1.1,
         ])
-        .range([height, 0]);
+        .range([height - 50, 0]);
 
     // Create root container where we will append all other chart elements
     const svgEl = d3.select(svgRef.current);
     svgEl.selectAll('*').remove(); // Clear svg content before adding new elements
     const svg = svgEl
         .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', `translate(100,20)`);
 
     // Add X grid lines with labels
     const xAxis = d3.axisBottom(xScale)
-        .tickSize(-height + margin.bottom)
+        .tickSize(-height)
         .tickFormat(d3.timeFormat('%B'));
     const xAxisGroup = svg.append('g')
-        .attr('transform', `translate(0, ${height - margin.bottom})`)
+        .attr('transform', `translate(0, ${height})`)
         .call(xAxis);
     xAxisGroup.select('.domain').remove();
     xAxisGroup.selectAll('line').attr('stroke', 'var(--alt-color)');
