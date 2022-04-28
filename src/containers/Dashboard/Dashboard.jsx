@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
@@ -20,6 +20,12 @@ import './Dashboard.css';
  * @returns {JSX}
  */
 const Dashboard = () => {
+    /**
+     * If the side panel is open or not
+     * @constant
+     * @type {state}
+     */
+    const [show, setShow] = useState(false);
     /**
      * The current year being viewed
      * @constant
@@ -85,9 +91,14 @@ const Dashboard = () => {
     return (
         <div>
             <Container fluid className='Main'>
-                <Row>
-                    <Col xs='1'><SidePanel /></Col>
-                    <Col xs='auto'>
+                <Row xs='auto'>
+                    <Col xs={show ? 2 : 1}>
+                        <SidePanel
+                            show={show}
+                            setShow={setShow}
+                        />
+                    </Col>
+                    <Col xs={show ? 10 : 11}>
                         <Title year={year} />
                         <ChartBox data={{ name: year, items: chartData }} />
                     </Col>

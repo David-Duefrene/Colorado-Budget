@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Stack from 'react-bootstrap/Stack';
@@ -14,13 +15,7 @@ import LoadData, {
 
 import './SidePanel.css';
 
-const SidePanel = () => {
-    /**
-     * If the side panel is open or not
-     * @constant
-     * @type {state}
-     */
-    const [show, setShow] = useState(false);
+const SidePanel = ({ show, setShow }) => {
     /**
      * The type of data the user is looking at ex. cabinet, department, fund category or fund
      * @constant
@@ -120,6 +115,11 @@ const SidePanel = () => {
             </Collapse>
         </div>
     );
+};
+
+SidePanel.propTypes = {
+    show: PropTypes.bool.isRequired,
+    setShow: PropTypes.func.isRequired,
 };
 
 export default SidePanel;

@@ -2,6 +2,14 @@
     color: var(--text-color);
 }
 
+.col-1 {
+    width: 5%;
+}
+
+.col-2 {
+    width: 12%;
+}
+
 body {
     background-color: var(--main-color);
 }
