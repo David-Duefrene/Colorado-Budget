@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import ChartBox from '../../components/ChartBox/ChartBox';
 import SidePanel from '../SidePanel/SidePanel';
@@ -82,15 +83,17 @@ const Dashboard = () => {
     }
 
     return (
-        <Container fluid className='Main'>
-            <Col xs='1'>
-                <SidePanel />
-            </Col>
-            <Col xs='auto' className='LineChart'>
-                <Title year={year} />
-                <ChartBox data={{ name: year, items: chartData }} />
-            </Col>
-        </Container>
+        <div>
+            <Container fluid className='Main'>
+                <Row>
+                    <Col xs='1'><SidePanel /></Col>
+                    <Col xs='auto'>
+                        <Title year={year} />
+                        <ChartBox data={{ name: year, items: chartData }} />
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
 };
 
