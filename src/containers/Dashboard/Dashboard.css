@@ -13,3 +13,7 @@
 body {
     background-color: var(--main-color);
 }
+
+.Chart {
+    transition: width .5s ease-in-out;
+}

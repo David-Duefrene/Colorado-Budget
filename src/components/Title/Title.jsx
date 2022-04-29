@@ -22,7 +22,7 @@ const Title = (props) => {
 
     return (
         <Row>
-            <Col xs='1'><ThemeSwitch /></Col>
+            <Col xs='2'><ThemeSwitch /></Col>
             <Col>
                 <p>{description}</p>
                 <h3>{`Current year being viewed: ${year}`}</h3>
