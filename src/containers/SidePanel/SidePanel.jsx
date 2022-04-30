@@ -82,6 +82,7 @@ const SidePanel = ({ show, setShow }) => {
     return (
         <div className='SidePanel d-grid gap-2'>
             <Button
+                className='SidePanel-button'
                 onClick={() => setShow(!show)}
                 aria-controls='SidePanelID'
             >

@@ -17,7 +17,7 @@ const Selection = (props) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle id='dropdown-basic'>
+            <Dropdown.Toggle className='SidePanel-button' id='dropdown-basic'>
                 {year}
             </Dropdown.Toggle>
             <Dropdown.Menu>

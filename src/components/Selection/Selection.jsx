@@ -20,7 +20,7 @@ const Selection = (props) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle id='dropdown-basic'>
+            <Dropdown.Toggle className='SidePanel-button' id='dropdown-basic'>
                 {selection}
             </Dropdown.Toggle>
             <Dropdown.Menu>

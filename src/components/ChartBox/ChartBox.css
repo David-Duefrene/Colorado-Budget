@@ -1,0 +1,4 @@
+.Chart {
+    box-shadow:  4px 4px 5px var(--line-color);
+    border-radius: 5px;
+}

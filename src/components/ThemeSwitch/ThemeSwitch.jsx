@@ -28,7 +28,7 @@ const ThemeSwitch = () => {
             document.documentElement.style.setProperty('--main-color', 'hsl(0, 0%, 90%)');
             document.documentElement.style.setProperty('--text-color', 'hsl(0, 0%, 0%)');
             document.documentElement.style.setProperty('--line-color', 'hsl(265, 100%, 47%)');
-            document.documentElement.style.setProperty('--alt-color', 'hsla(258.1, 100%, 35.1%, 0.59)');
+            document.documentElement.style.setProperty('--alt-color', 'hsla(258, 100%, 35%, 0.5)');
             setTheme('light');
             return;
         }

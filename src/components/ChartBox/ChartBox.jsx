@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import LineChart from '../LineChart/LineChart';
+import './ChartBox.css';
 
 /**
  *  ChartBox is a React wrapper for LineChart.
@@ -41,7 +42,7 @@ const ChartBox = ({ data }) => {
         LineChart({ data, dimensions, svgRef });
     }, [data, dimensions, svgRef]);
 
-    return <svg ref={svgRef} width={width + 120} height={height * 1.1} />;
+    return <svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />;
 };
 
 ChartBox.propTypes = {

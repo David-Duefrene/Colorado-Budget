@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -93,15 +92,12 @@ const Dashboard = () => {
         <div>
             <Container fluid className='Main'>
                 <Row xs='auto'>
-                    <Col className='Chart' xs={show ? 2 : 1}>
-                        <SidePanel
-                            show={show}
-                            setShow={setShow}
-                        />
+                    <Col className='SmoothTransition' xs={show ? 2 : 1}>
+                        <SidePanel show={show} setShow={setShow} />
                     </Col>
                     <Col xs={show ? 9 : 10}>
                         <Title year={year} />
-                        <ChartBox className='NoTransition' data={{ name: year, items: chartData }} />
+                        <ChartBox data={{ name: year, items: chartData }} />
                     </Col>
                 </Row>
             </Container>
