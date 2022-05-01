@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import '../Dropdown.css';
+
 const Selection = (props) => {
     const { year, yearList, changeYear } = props;
 
     const itemList = yearList.map((y) => (
         <Dropdown.Item
+            className='dropdown-item'
             onClick={() => changeYear(y)}
             key={`year-${y}`}
         >
@@ -17,10 +20,10 @@ const Selection = (props) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle className='SidePanel-button' id='dropdown-basic'>
+            <Dropdown.Toggle className='dropdown-trigger' id='dropdown-basic'>
                 {year}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className='dropdown-background'>
                 {itemList}
             </Dropdown.Menu>
         </Dropdown>

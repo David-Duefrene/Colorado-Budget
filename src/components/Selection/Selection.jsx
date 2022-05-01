@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import '../Dropdown.css';
+
 /**
  * A dropdown menu for selecting what dataset to view
  * @component
@@ -20,20 +22,20 @@ const Selection = (props) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle className='SidePanel-button' id='dropdown-basic'>
+            <Dropdown.Toggle className='dropdown-trigger' id='dropdown-basic'>
                 {selection}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-                <Dropdown.Item onClick={() => dispatchSelection('department')}>
+            <Dropdown.Menu className='dropdown-background'>
+                <Dropdown.Item className='dropdown-item' onClick={() => dispatchSelection('department')}>
                     Department
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatchSelection('cabinet')}>
+                <Dropdown.Item className='dropdown-item' onClick={() => dispatchSelection('cabinet')}>
                     Cabinet
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatchSelection('fund_category')}>
+                <Dropdown.Item className='dropdown-item' onClick={() => dispatchSelection('fund_category')}>
                     Fund Category
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => dispatchSelection('fund')}>
+                <Dropdown.Item className='dropdown-item' onClick={() => dispatchSelection('fund')}>
                     Fund
                 </Dropdown.Item>
             </Dropdown.Menu>

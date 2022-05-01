@@ -1,0 +1,32 @@
+.dropdown-trigger {
+    outline: none;
+    color: var(--text-color);
+    background-color: unset;
+    background-image: var(--secondary-color);
+    box-shadow: 4px 4px 5px var(--alt-color) !important;
+    border-radius: 4px;
+    margin: 5px;
+    width: 100%;
+    border-color: var(--text-color) !important;
+}
+.dropdown-background {
+    background-color: var(--alt-color);
+}
+
+.dropdown-item {
+    background-color: unset !important;
+    color: var(--text-color);
+    background-image: var(--secondary-color);
+    border-radius: 4px;
+}
+
+.dropdown-trigger:hover,
+.dropdown-item:hover {
+    background-image: var(--rev-secondary-color);
+}
+
+.dropdown-trigger:focus, .dropdown-trigger:active,
+.dropdown-item:focus, .dropdown-item:active {
+    box-shadow: inset 10px 10px 10px -10px var(--line-color) !important;
+    background-color: var(--alt-color);
+}

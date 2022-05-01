@@ -12,4 +12,5 @@
     --line-color: hsl(267, 95%, 76%);
     --alt-color: hsl(0, 0%, 66%);
     --secondary-color: linear-gradient(45deg, var(--main-color), var(--alt-color) 95%);
+    --rev-secondary-color: linear-gradient(45deg, var(--alt-color), var(--main-color) 95%);
 }
