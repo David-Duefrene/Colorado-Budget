@@ -1,25 +1,22 @@
 {
   "files": {
-    "main.css": "/Colorado-Budget/static/css/main.4b4fb349.chunk.css",
-    "main.js": "/Colorado-Budget/static/js/main.8adeba37.chunk.js",
-    "main.js.map": "/Colorado-Budget/static/js/main.8adeba37.chunk.js.map",
-    "runtime-main.js": "/Colorado-Budget/static/js/runtime-main.7c3b0de5.js",
-    "runtime-main.js.map": "/Colorado-Budget/static/js/runtime-main.7c3b0de5.js.map",
-    "static/css/2.0a9ec390.chunk.css": "/Colorado-Budget/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.861dd970.chunk.js": "/Colorado-Budget/static/js/2.861dd970.chunk.js",
-    "static/js/2.861dd970.chunk.js.map": "/Colorado-Budget/static/js/2.861dd970.chunk.js.map",
-    "static/js/3.6d9c51bd.chunk.js": "/Colorado-Budget/static/js/3.6d9c51bd.chunk.js",
-    "static/js/3.6d9c51bd.chunk.js.map": "/Colorado-Budget/static/js/3.6d9c51bd.chunk.js.map",
+    "main.css": "/Colorado-Budget/static/css/main.f44f50dd.chunk.css",
+    "main.js": "/Colorado-Budget/static/js/main.304b8f18.chunk.js",
+    "main.js.map": "/Colorado-Budget/static/js/main.304b8f18.chunk.js.map",
+    "runtime-main.js": "/Colorado-Budget/static/js/runtime-main.e43080e9.js",
+    "runtime-main.js.map": "/Colorado-Budget/static/js/runtime-main.e43080e9.js.map",
+    "static/js/2.cd1d37d1.chunk.js": "/Colorado-Budget/static/js/2.cd1d37d1.chunk.js",
+    "static/js/2.cd1d37d1.chunk.js.map": "/Colorado-Budget/static/js/2.cd1d37d1.chunk.js.map",
+    "static/js/3.0029a540.chunk.js": "/Colorado-Budget/static/js/3.0029a540.chunk.js",
+    "static/js/3.0029a540.chunk.js.map": "/Colorado-Budget/static/js/3.0029a540.chunk.js.map",
     "index.html": "/Colorado-Budget/index.html",
-    "static/css/2.0a9ec390.chunk.css.map": "/Colorado-Budget/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.4b4fb349.chunk.css.map": "/Colorado-Budget/static/css/main.4b4fb349.chunk.css.map",
-    "static/js/2.861dd970.chunk.js.LICENSE.txt": "/Colorado-Budget/static/js/2.861dd970.chunk.js.LICENSE.txt"
+    "static/css/main.f44f50dd.chunk.css.map": "/Colorado-Budget/static/css/main.f44f50dd.chunk.css.map",
+    "static/js/2.cd1d37d1.chunk.js.LICENSE.txt": "/Colorado-Budget/static/js/2.cd1d37d1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7c3b0de5.js",
-    "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.861dd970.chunk.js",
-    "static/css/main.4b4fb349.chunk.css",
-    "static/js/main.8adeba37.chunk.js"
+    "static/js/runtime-main.e43080e9.js",
+    "static/js/2.cd1d37d1.chunk.js",
+    "static/css/main.f44f50dd.chunk.css",
+    "static/js/main.304b8f18.chunk.js"
   ]
 }
