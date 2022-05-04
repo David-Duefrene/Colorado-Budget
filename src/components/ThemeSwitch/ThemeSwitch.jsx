@@ -4,6 +4,22 @@ import Button from 'react-bootstrap/Button';
 
 import './ThemeSwitch.css';
 
+const Themes = {
+    "dark": {
+        "main-color": "hsl(0, 0%, 13%)",
+        "text-color": "hsl(0, 0%, 100%)",
+        "line-color": "hsl(267, 95%, 76%)",
+        "alt-color": "hsl(0, 0%, 66%)"
+    },
+    "light": {
+        "main-color": "hsl(0, 0%, 90%)",
+        "text-color": "hsl(0, 0%, 0%)",
+        "line-color": "hsl(265, 100%, 47%)",
+        "alt-color": "hsla(258, 100%, 35%, 0.5)"
+    }
+}
+
+
 /**
  * Button to switch between the light and dark mode
  * @component
@@ -24,18 +40,18 @@ const ThemeSwitch = () => {
      * @type {function}
      */
     const switchTheme = () => {
+        const { light, dark } = Themes;
+
         if (theme === 'dark') {
-            document.documentElement.style.setProperty('--main-color', 'hsl(0, 0%, 90%)');
-            document.documentElement.style.setProperty('--text-color', 'hsl(0, 0%, 0%)');
-            document.documentElement.style.setProperty('--line-color', 'hsl(265, 100%, 47%)');
-            document.documentElement.style.setProperty('--alt-color', 'hsla(258, 100%, 35%, 0.5)');
+            Object.keys(light).forEach((prop) => {
+                document.documentElement.style.setProperty(`--${prop}`, `${light[prop]}`);
+            });
             setTheme('light');
             return;
         }
-        document.documentElement.style.setProperty('--main-color', 'hsl(0, 0%, 13%)');
-        document.documentElement.style.setProperty('--text-color', 'hsl(0, 0%, 100%)');
-        document.documentElement.style.setProperty('--line-color', 'hsl(267, 95%, 76%)');
-        document.documentElement.style.setProperty('--alt-color', 'hsl(0, 27%, 94%)');
+        Object.keys(dark).forEach((prop) => {
+            document.documentElement.style.setProperty(`--${prop}`, dark[prop]);
+        });
         setTheme('dark');
     };
 
