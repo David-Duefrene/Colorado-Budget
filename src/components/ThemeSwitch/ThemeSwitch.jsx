@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 
+import ThemeController  from './ThemeController';
 import './ThemeSwitch.css';
 
 const Themes = {
-    "dark": {
+    "Dark": {
         "main-color": "hsl(0, 0%, 13%)",
         "text-color": "hsl(0, 0%, 100%)",
         "line-color": "hsl(267, 95%, 76%)",
         "alt-color": "hsl(0, 0%, 66%)"
     },
-    "light": {
+    "Light": {
         "main-color": "hsl(0, 0%, 90%)",
         "text-color": "hsl(0, 0%, 0%)",
         "line-color": "hsl(265, 100%, 47%)",
@@ -32,7 +33,8 @@ const ThemeSwitch = () => {
      * @constant
      * @type {string}
      */
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState('Dark');
+    const switcher = new ThemeController(Themes, theme, setTheme);
 
     /**
      * The function to switch between the light and dark theme
@@ -40,29 +42,21 @@ const ThemeSwitch = () => {
      * @type {function}
      */
     const switchTheme = () => {
-        const { light, dark } = Themes;
-
-        if (theme === 'dark') {
-            Object.keys(light).forEach((prop) => {
-                document.documentElement.style.setProperty(`--${prop}`, `${light[prop]}`);
-            });
-            setTheme('light');
+        if (switcher.getTheme() === 'Dark') {
+            switcher.setTheme('Light');
             return;
         }
-        Object.keys(dark).forEach((prop) => {
-            document.documentElement.style.setProperty(`--${prop}`, dark[prop]);
-        });
-        setTheme('dark');
+        switcher.setTheme('Dark');
     };
 
-    return (
+	return (
         <div className='theme-switch d-grid'>
             <Button
                 size='sm'
-                variant={theme}
+                variant={switcher.getTheme() === 'Dark' ? 'dark' : 'light'}
                 onClick={switchTheme}
             >
-                {`${theme.charAt(0).toUpperCase() + theme.slice(1)} Mode`}
+            {`${switcher.getTheme()} Mode`}
             </Button>
         </div>
     );
