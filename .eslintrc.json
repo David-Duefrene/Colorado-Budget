@@ -1,20 +1,17 @@
 {
     "env": {
         "browser": true,
-        "node": true,
-        "jest": true
+        "es2021": true
     },
     "extends": [
-        "airbnb",
-        "plugin:cypress/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "airbnb"
     ],
-    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 11,
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
