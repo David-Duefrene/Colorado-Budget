@@ -28,6 +28,7 @@
         "react/jsx-indent-props" : ["error", 4],
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
         "import/no-named-as-default": 0,
+		"import/no-named-as-default-member": false,
         "react/no-danger": "off"
     }
 }
