@@ -28,7 +28,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "jsdom": "20.0.0",
     "redux-devtools-extension": "2.13.9",
-    "vitest": "0.22.0",
+    "vitest": "0.22.1",
     "vite": "3.0.8"
   },
   "scripts": {
