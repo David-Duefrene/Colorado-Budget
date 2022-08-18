@@ -1,48 +1,37 @@
 import React from 'react';
 
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-
-import { configure, mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import {
+    expect, it, describe, beforeEach, afterEach,
+} from 'vitest';
+import { cleanup } from '@testing-library/react';
 
 import Dashboard from './Dashboard';
-import testData from './testData.json';
-
-const mockStore = configureMockStore([thunk]);
-configure({ adapter: new Adapter() });
-jest.mock('../../components/LineChart/LineChart');
+import store from '../../store';
+import testData from '../../dummyData.json';
+import renderWithProvider from '../../testUtil/renderWithProvider';
 
 describe('<Dashboard />', () => {
     let wrapper;
-    const store = mockStore({
-        data: {
-            isLoading: false,
-            year: '2020',
-            yearList: ['2017', '2018', '2019', '2020', '2021'],
-            departmentList: testData,
-            departmentTotals: testData,
-            cabinetList: testData,
-            cabinetTotals: testData,
-            fundCategoryList: testData,
-            fundCategoryTotals: testData,
-            fundList: testData,
-            fundTotals: testData,
-            selection: 'department',
-            subItem: 'total',
-            workingDataSet: testData,
-            totals: testData,
-            totalAmount: 0.0,
-        },
-    });
 
     beforeEach(() => {
-        wrapper = mount(<Provider store={store}><Dashboard /></Provider>);
+        store.dispatch({ type: 'LOADDATA', data: testData });
+        wrapper = renderWithProvider(<Dashboard />);
     });
 
-    it('should have 2 columns, a dropdown list', () => {
-        expect(wrapper.find('Col')).toHaveLength(2);
-        expect(wrapper.find('Dropdown')).toHaveLength(4);
+    afterEach(() => {
+        cleanup();
+    });
+
+    it('should show loading!!! if no data is loaded', () => {
+        const empty = renderWithProvider(<Dashboard />);
+        empty.findAllByText('Loading!!!').then((res) => {
+            expect(res).toHaveLength(2);
+        });
+    });
+
+    it('should load 2020 by default', () => {
+        wrapper.findAllByText('2020').then((res) => {
+            expect(res).toHaveLength(1);
+        });
     });
 });

@@ -1,60 +1,49 @@
 import React from 'react';
 
-import { Provider } from 'react-redux';
-import { configure, mount } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import {
+    expect, it, describe, beforeEach, afterEach, vi,
+} from 'vitest';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 
 import Selection from './Selection';
 
-configure({ adapter: new Adapter() });
-const mockStore = configureMockStore([thunk]);
-
 describe('<Selection />', () => {
     let wrapper;
-    const store = mockStore({
-        data: {
-            selection: 'department',
-        },
-    });
+    const mockFn = vi.fn().mockImplementation(() => {});
 
     beforeEach(() => {
-        wrapper = mount(<Provider store={store}><Selection /></Provider>);
+        wrapper = render(<Selection selection='test1' dispatchSelection={mockFn} />);
+    });
+
+    afterEach(() => {
+        cleanup();
+        vi.restoreAllMocks();
     });
 
     it('should render a single <div> and be set to department', () => {
-        const button = wrapper.find('button');
+        const button = wrapper.getByText('test1');
+        expect(button).toBeDefined();
+        fireEvent.click(button);
 
-        expect(button).toHaveLength(1);
-        expect(button.text()).toEqual('department');
-    });
+        const department = wrapper.getByText('Department');
+        const cabinet = wrapper.getByText('Cabinet');
+        const fundCategory = wrapper.getByText('Fund Category');
+        const fund = wrapper.getByText('Fund');
 
-    it('should dispatch an action when a <ListGroupItem> is clicked', () => {
-        wrapper.find('button').simulate('click');
-        const dropdownLinks = wrapper.find('a');
+        expect(department).toBeDefined();
+        expect(cabinet).toBeDefined();
+        expect(fundCategory).toBeDefined();
+        expect(fund).toBeDefined();
 
-        expect(dropdownLinks).toHaveLength(4);
-        expect(dropdownLinks.at(0).text()).toEqual('Department');
-        expect(dropdownLinks.at(1).text()).toEqual('Cabinet');
-        expect(dropdownLinks.at(2).text()).toEqual('Fund Category');
-        expect(dropdownLinks.at(3).text()).toEqual('Fund');
-    });
+        fireEvent.click(department);
+        expect(mockFn).toHaveBeenCalledWith('department');
+        fireEvent.click(cabinet);
+        expect(mockFn).toHaveBeenCalledWith('cabinet');
+        fireEvent.click(fundCategory);
+        expect(mockFn).toHaveBeenCalledWith('fund_category');
+        fireEvent.click(fund);
+        expect(mockFn).toHaveBeenCalledWith('fund');
 
-    it('Should match the active item with selection', () => {
-        wrapper.find('button').simulate('click');
-        const dropdownLinks = wrapper.find('a');
-
-        dropdownLinks.at(1).simulate('click');
-        expect(store.getActions()).toEqual([{ data: { selection: 'cabinet' }, type: 'SETSELECTION' }]);
-        store.clearActions();
-
-        dropdownLinks.at(2).simulate('click');
-        expect(store.getActions()).toEqual([{ data: { selection: 'fund_category' }, type: 'SETSELECTION' }]);
-        store.clearActions();
-
-        dropdownLinks.at(3).simulate('click');
-        expect(store.getActions()).toEqual([{ data: { selection: 'fund' }, type: 'SETSELECTION' }]);
-        store.clearActions();
+        expect(mockFn).toHaveBeenCalledTimes(4);
     });
 });

@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { configure, mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import {
+    expect, it, describe, beforeEach, afterEach,
+} from 'vitest';
+import { cleanup, render } from '@testing-library/react';
 
 import ChartBox from './ChartBox';
-
-configure({ adapter: new Adapter() });
-jest.mock('../../components/LineChart/LineChart');
 
 describe('<ChartBox />', () => {
     let wrapper;
@@ -18,21 +17,18 @@ describe('<ChartBox />', () => {
         },
     };
     const data = {
-        color: '#ff0000',
-        name: 'Department',
         items: [
             { date: '2020-01-01', value: 100 },
         ],
     };
 
     beforeEach(() => {
-        wrapper = mount(<ChartBox data={data} dimensions={dimensions} />);
+        wrapper = render(<ChartBox data={data} dimensions={dimensions} />);
     });
 
-    it('should have 2 columns, a dropdown list', () => {
-        const svg = wrapper.find('svg');
+    afterEach(cleanup);
 
-        expect(svg).toHaveLength(1);
-        expect(svg.props()).toEqual({ width: 800, height: 330 });
+    it('should render a January data point', () => {
+        expect(wrapper.getByText('January')).toBeDefined();
     });
 });
