@@ -3,17 +3,16 @@ import React from 'react';
 import {
     expect, it, describe, beforeEach, afterEach, vi,
 } from 'vitest';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 
 import Year from './Year';
-import renderWithProvider from '../../testUtil/renderWithProvider';
 
 describe('<Year />', () => {
     let wrapper;
     const mockFn = vi.fn().mockImplementation(() => {});
 
     beforeEach(() => {
-        wrapper = renderWithProvider(<Year year='2020' yearList={['2020', '2019']} changeYear={mockFn} />);
+        wrapper = render(<Year year='2020' yearList={['2020', '2019']} changeYear={mockFn} />);
     });
 
     afterEach(() => {
@@ -22,12 +21,10 @@ describe('<Year />', () => {
     });
 
     it('should render a single <div> and be set to 2020', () => {
-        wrapper.findAllByText('2020').then((res) => {
-            expect(res).toHaveLength(1);
-        });
+        expect(wrapper.getByText('2020')).toBeDefined();
     });
 
-    it('should dispatch an action when a <ListGroupItem> is clicked', () => {
+    it('should switch to 2019 when button is clicked', () => {
         const dropdown = wrapper.getByText('2020');
         expect(dropdown).toBeDefined();
         fireEvent.click(dropdown);
