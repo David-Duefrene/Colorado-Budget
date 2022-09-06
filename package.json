@@ -30,7 +30,7 @@
     "jsdom": "20.0.0",
     "redux-devtools-extension": "2.13.9",
     "vite": "3.1.0",
-    "vitest": "0.22.1"
+    "vitest": "0.23.1"
   },
   "scripts": {
     "deploy": "gh-pages -d dist",
