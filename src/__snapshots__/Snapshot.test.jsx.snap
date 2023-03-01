@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`index > renders the same snapshot without crashing 1`] = `
 <DocumentFragment>
@@ -29,7 +29,7 @@ exports[`index > renders the same snapshot without crashing 1`] = `
                 id="SidePanelID"
               >
                 <div
-                  class="Stack vstack gap-1 minBreakpoint-xs"
+                  class="Stack vstack gap-1"
                 >
                   <div
                     class="dropdown"
@@ -1727,7 +1727,7 @@ exports[`index > renders the same snapshot without crashing 2`] = `
                     id="SidePanelID"
                   >
                     <div
-                      class="Stack vstack gap-1 minBreakpoint-xs"
+                      class="Stack vstack gap-1"
                     >
                       <div
                         class="dropdown"
@@ -3420,7 +3420,7 @@ exports[`index > renders the same snapshot without crashing 2`] = `
                   id="SidePanelID"
                 >
                   <div
-                    class="Stack vstack gap-1 minBreakpoint-xs"
+                    class="Stack vstack gap-1"
                   >
                     <div
                       class="dropdown"
