@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://david-duefrene.github.io/Colorado-Budget",
   "dependencies": {
-    "axios": "1.4.0",
+    "axios": "1.5.0",
     "d3": "7.8.5",
     "react": "18.2.0",
     "react-bootstrap": "2.8.0",
