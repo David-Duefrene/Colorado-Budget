@@ -16,7 +16,7 @@
     "web-vitals": "3.5.0"
   },
   "devDependencies": {
-    "@testing-library/react": "14.0.0",
+    "@testing-library/react": "14.3.1",
     "@types/react": "18.2.25",
     "@types/react-dom": "18.2.10",
     "@vitejs/plugin-react": "2.2.0",
